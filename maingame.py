@@ -126,7 +126,7 @@ class Enemy(pygame.sprite.Sprite):
             self.agenda = [[30, 1], [26, 4], [21, 4], [20.5, 9], [15, 9]]
 
         elif self.type == 4:
-            self.agenda = [[1, 16], [14, 16],  [15, 9]]
+            self.agenda = [[1, 16], [14, 16], [15, 9]]
 
         elif self.type == 5:
             self.agenda = [[30, 16], [26, 12], [19, 12], [15, 9]]
@@ -209,7 +209,7 @@ class Dog(pygame.sprite.Sprite):
 
 class Turret(pygame.sprite.Sprite):
     def __init__(self, pos):
-        super(Turret, self).__init__()
+        super().__init__()
         self.image = pygame.image.load('turret1.png').convert_alpha()
         self.rect = self.image.get_rect()
 
@@ -217,13 +217,14 @@ class Turret(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,
                                             (self.image.get_size()[0] * creature_scale,
                                              self.image.get_size()[1] * creature_scale))
-        self.rect = pos
+        self.rect = self.image.get_rect()
+        self.rect.x = (pos[0])
+        self.rect.y = (pos[1])
 
 
 # Call this function so the Pygame library can initialize itself
 pygame.init()
 
-# Create an 800x600 sized screen
 if fullscreen:
     screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT], FULLSCREEN)
 else:
@@ -274,8 +275,10 @@ for sc in sprites:
 
 clock = pygame.time.Clock()
 
+buildone = False
 startup = True
 done = False
+
 while not done:
 
     for event in pygame.event.get():
@@ -292,9 +295,18 @@ while not done:
             elif event.key == pygame.K_s:
                 hitbox.changespeed(0, plr_speed)
             elif event.key == pygame.K_SPACE:
-                new_turret = Turret((int(player.rect.x)+5, int(player.rect.y)+10))
-                turrets.add(new_turret)
-                all_sprites.add(new_turret)
+                for t in turrets:
+                    if player.rect.colliderect(t.rect):
+                        t.kill()
+                        turretcount += 1
+                        buildone = True
+
+                if turretcount > 0 and not buildone:
+                    new_turret = Turret((int(player.rect.x) + 5, int(player.rect.y) + 10))
+                    turrets.add(new_turret)
+                    all_sprites.add(new_turret)
+                    turretcount -= 1
+                buildone = False
 
             elif event.key == pygame.K_ESCAPE:
                 done = True
