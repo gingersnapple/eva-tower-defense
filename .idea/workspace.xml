@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maingame.py" beforeDir="false" afterPath="$PROJECT_DIR$/maingame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,22 +208,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587041950298" />
-    <state width="1515" height="123" key="GridCell.Tab.0.bottom" timestamp="1587384672511">
+    <state width="1515" height="263" key="GridCell.Tab.0.bottom" timestamp="1587387490070">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="123" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587384672511" />
-    <state width="1515" height="123" key="GridCell.Tab.0.center" timestamp="1587384672511">
+    <state width="1515" height="263" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587387490070" />
+    <state width="1515" height="263" key="GridCell.Tab.0.center" timestamp="1587387490070">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="123" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587384672511" />
-    <state width="1515" height="123" key="GridCell.Tab.0.left" timestamp="1587384672511">
+    <state width="1515" height="263" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587387490070" />
+    <state width="1515" height="263" key="GridCell.Tab.0.left" timestamp="1587387490070">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="123" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587384672511" />
-    <state width="1515" height="123" key="GridCell.Tab.0.right" timestamp="1587384672511">
+    <state width="1515" height="263" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587387490070" />
+    <state width="1515" height="263" key="GridCell.Tab.0.right" timestamp="1587387490070">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="123" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587384672511" />
+    <state width="1515" height="263" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587387490070" />
     <state width="1515" height="257" key="GridCell.Tab.1.bottom" timestamp="1584378562308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -250,10 +252,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1587384805200" />
-    <state x="762" y="0" width="781" height="830" key="dock-window-1" timestamp="1587383624124">
+    <state x="762" y="0" width="781" height="830" maximized="true" key="dock-window-1" timestamp="1587386550120">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="762" y="0" width="781" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1587383624124" />
+    <state x="762" y="0" width="781" height="830" maximized="true" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1587386550120" />
     <state x="793" y="0" width="814" height="857" key="dock-window-1/0.0.1600.850@0.0.1600.850" timestamp="1585832438647" />
     <state x="793" y="0" width="814" height="867" key="dock-window-1/0.0.1600.860@0.0.1600.860" timestamp="1587383614499" />
     <state x="792" y="0" width="816" height="868" key="dock-window-1/0.0.1920.1030@0.0.1920.1030" timestamp="1584971833077" />

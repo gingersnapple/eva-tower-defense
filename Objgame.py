@@ -21,6 +21,26 @@ fullscreen = False
 clock = pygame.time.Clock()
 
 
+class Wall(pygame.sprite.Sprite):
+    def __init__(self, sprite, x, y):
+        # Call the parent's constructor
+        super().__init__()
+        self.image = pygame.image.load(sprite).convert()
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+
+        # replace new_width and new_height with the desired width and height
+        self.image = pygame.transform.scale(self.image,
+                                            (self.image.get_size()[0] * wall_scale,
+                                             self.image.get_size()[1] * wall_scale))
+
+        # Make our top-left corner the passed-in location.
+        self.rect = self.image.get_rect()
+        self.rect.x = self.x
+        self.rect.y = self.y
+
+
 class Dog(pygame.sprite.Sprite):
     def __init__(self):
         super(Dog, self).__init__()
@@ -34,6 +54,8 @@ class Dog(pygame.sprite.Sprite):
         self.rect = ((15 * 48 + 21), (9 * 48))
 
 
+# dog = Dog()
+
 class App:
     def __init__(self):
         self._running = True
@@ -41,8 +63,6 @@ class App:
         self.size = self.weight, self.height = SCREEN_WIDTH, SCREEN_HEIGHT
 
         self.all_sprites = []
-        self.dog = Dog()
-        self.all_sprites.add(dog)
 
     def on_init(self):
         pygame.init()
@@ -51,6 +71,43 @@ class App:
         else:
             self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         self._running = True
+
+        sc = 48
+        self.wall_L1 = Wall("wall-long.png", 6, 2)
+        self.wall_L2 = Wall("wall-long.png", 18, 2)
+        self.wall_L3 = Wall("wall-long.png", 6, 14)
+        self.wall_L4 = Wall("wall-long.png", 18, 14)
+        self.wall_L5 = Wall("wall-long.png", 12, 6)
+        self.wall_S1 = Wall("wall-side.png", 3, 6)
+        self.wall_S2 = Wall("wall-side.png", 28, 6)
+        self.wall_SS1 = Wall("wall-short-side.png", 7, 6)
+        self.wall_SS2 = Wall("wall-short-side.png", 24, 6)
+
+        self.wall_SF1 = Wall("wall-short-l.png", 8, 10)
+        self.wall_SB1 = Wall("wall-short-l.png", 8, 6)
+
+        self.wall_SF2 = Wall("wall-short-r.png", 22, 10)
+        self.wall_SB2 = Wall("wall-short-r.png", 22, 6)
+        self.wall_list = [self.wall_L1, self.wall_L2, self.wall_L3, self.wall_L4, self.wall_L5, self.wall_S1,
+                          self.wall_S2, self.wall_SS1, self.wall_SS2, self.wall_SF1,
+                          self.wall_SF2,
+                          self.wall_SB1, self.wall_SB2]
+
+        for wall in self.wall_list:
+            wall.x *= sc
+            wall.y *= sc
+
+            # correct position of some walls
+            if wall == self.wall_SS2 or wall == self.wall_SF2 or wall == self.wall_SB2:
+                wall.x -= 6
+
+            elif wall == self.wall_SF1 or wall == self.wall_SB1:
+                wall.x += 6
+
+            self.all_sprites.append(wall)
+
+        self.dog = Dog()
+        self.all_sprites.append(self.dog)
 
     def on_event(self, event):
         if event.type == pygame.QUIT:

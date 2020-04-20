@@ -252,7 +252,7 @@ wall_S2 = Wall("wall-side.png", (28 * sc, 6 * sc))
 
 wall_SS1 = Wall("wall-short-side.png", (7 * sc, 6 * sc))
 wall_SS2 = Wall("wall-short-side.png", (24 * sc - 6, 6 * sc))
-wall_SF1 = Wall("wall-short-l.png", (8 * sc + 6, 10 * sc))
+wall_SF1 =  Wall("wall-short-l.png", (8 * sc + 6, 10 * sc))
 wall_SB1 = Wall("wall-short-l.png", (8 * sc + 6, 6 * sc))
 wall_SF2 = Wall("wall-short-r.png", (22 * sc - 6, 10 * sc))
 wall_SB2 = Wall("wall-short-r.png", (22 * sc - 6, 6 * sc))
