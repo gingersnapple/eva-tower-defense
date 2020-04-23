@@ -11,7 +11,6 @@ plr_speed = 6
 som_speed = 0.5
 plr_x = 10
 plr_y = 500
-turretcount = 7
 
 # Screen dimensions
 SCREEN_WIDTH = 1536
@@ -78,8 +77,8 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         # move to hitbox
-        self.rect.x = App.hitbox.rect.x
-        self.rect.y = (App.hitbox.rect.y - 48)
+        self.rect.x = theApp.hitbox.rect.x
+        self.rect.y = (theApp.hitbox.rect.y - 48)
 
 
 class Hitbox(Player):
@@ -88,8 +87,8 @@ class Hitbox(Player):
         self.surf = pygame.Surface((42, 15))
         self.rect = self.surf.get_rect()
 
-        self.rect.x = App.player.x
-        self.rect.y = (App.player.y + 48)
+        self.rect.x = theApp.player.x
+        self.rect.y = (theApp.player.y + 48)
 
     def changespeed(self, x, y):
         self.change_x += x
@@ -129,7 +128,96 @@ class Hitbox(Player):
         if self.rect.bottom > SCREEN_HEIGHT:
             self.rect.bottom = SCREEN_HEIGHT
 
-        App.player.update()
+        theApp.player.update()
+
+
+class Turret(pygame.sprite.Sprite):
+    def __init__(self, pos):
+        super().__init__()
+        self.image = pygame.image.load('turret1.png').convert_alpha()
+        self.rect = self.image.get_rect()
+
+        # replace new_width and new_height with the desired width and height
+        self.image = pygame.transform.scale(self.image,
+                                            (self.image.get_size()[0] * creature_scale,
+                                             self.image.get_size()[1] * creature_scale))
+        self.rect = self.image.get_rect()
+        self.rect.x = (pos[0])
+        self.rect.y = (pos[1])
+
+
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+
+        self.image = pygame.image.load('sombi1.png').convert_alpha()
+        self.rect = self.image.get_rect()
+        self.speed = som_speed
+
+        # replace new_width and new_height with the desired width and height
+        self.image = pygame.transform.scale(self.image,
+                                            (self.image.get_size()[0] * creature_scale,
+                                             self.image.get_size()[1] * creature_scale))
+        self.type = random.randrange(1, 6)
+
+        if self.type == 1:
+            self.agenda = [[1, 1], [5, 4], [5, 12], [15, 12], [15, 9]]
+
+        elif self.type == 2:
+            self.agenda = [[16, 1], [16, 4], [11, 4], [11, 9], [15, 9]]
+
+        elif self.type == 3:
+            self.agenda = [[30, 1], [26, 4], [21, 4], [20.5, 9], [15, 9]]
+
+        elif self.type == 4:
+            self.agenda = [[1, 16], [14, 16], [15, 9]]
+
+        elif self.type == 5:
+            self.agenda = [[30, 16], [26, 12], [19, 12], [15, 9]]
+
+        for i in self.agenda:
+            i[0] = i[0] * 48
+            i[1] = i[1] * 48
+
+        self.rect = self.agenda[0]
+        self.dx = 0
+        self.dy = 0
+        self.steps = 0
+        self.goal = (0, 0)
+        self.stage = 1
+        self.startup = True
+        self.moving = False
+
+    def moveto(self, point):
+        px = int(point[0])
+        py = int(point[1])
+        x = px - self.rect[0]
+        y = py - self.rect[1]
+        v = self.speed
+        s = math.sqrt((x ** 2) + (y ** 2))
+        self.dx = v * (x / s)
+        self.dy = v * (y / s)
+        self.steps = round(s / v)
+        self.goal = (point[0], point[1])
+        self.moving = True
+
+    def update(self):
+        if self.startup:
+            self.moveto(self.agenda[1])
+            self.startup = False
+
+        if self.moving:
+            self.rect = (self.rect[0] + self.dx, self.rect[1] + self.dy)
+            self.steps -= 1
+            if self.steps < 1:
+                self.moving = False
+                # uncomment for glitchy but precise ending
+                # self.rect = self.goal
+                if self.stage + 1 < len(self.agenda):
+                    self.stage += 1
+                    self.moveto(self.agenda[self.stage])
+                else:
+                    self.kill()
 
 
 class App:
@@ -139,6 +227,10 @@ class App:
         self.size = self.weight, self.height = SCREEN_WIDTH, SCREEN_HEIGHT
 
         self.all_sprites = []
+        self.enemies = pygame.sprite.Group()
+        self.turrets = pygame.sprite.Group()
+        self.turretcount = 7
+        self.buildone = False
 
     def on_init(self):
         pygame.init()
@@ -179,8 +271,8 @@ class App:
         self.hitbox.walls = self.wall_list
 
         self.dog = Dog()
-        self.all_sprites.append(self.dog, self.player, self.wall_list)
-
+        self.all_sprites.extend([self.dog, self.player])
+        self.all_sprites.extend(self.wall_list)
 
         for wall in self.wall_list:
             self.all_sprites.append(wall)
@@ -190,11 +282,43 @@ class App:
             self._running = False
 
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+            if event.key == pygame.K_a:
+                self.hitbox.changespeed(-plr_speed, 0)
+            elif event.key == pygame.K_d:
+                self.hitbox.changespeed(plr_speed, 0)
+            elif event.key == pygame.K_w:
+                self.hitbox.changespeed(0, -plr_speed)
+            elif event.key == pygame.K_s:
+                self.hitbox.changespeed(0, plr_speed)
+            elif event.key == pygame.K_SPACE:
+                for t in self.turrets:
+                    if self.player.rect.colliderect(t.rect):
+                        t.kill()
+                        self.turretcount += 1
+                        self.buildone = True
+
+                if self.turretcount > 0 and not self.buildone:
+                    new_turret = Turret((int(self.player.rect.x) + 5, int(self.player.rect.y) + 10))
+                    self.turrets.add(new_turret)
+                    self.all_sprites.append(new_turret)
+                    self.turretcount -= 1
+                self.buildone = False
+
+            elif event.key == pygame.K_ESCAPE:
                 self._running = False
 
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_a:
+                self.hitbox.changespeed(plr_speed, 0)
+            elif event.key == pygame.K_d:
+                self.hitbox.changespeed(-plr_speed, 0)
+            elif event.key == pygame.K_w:
+                self.hitbox.changespeed(0, plr_speed)
+            elif event.key == pygame.K_s:
+                self.hitbox.changespeed(0, -plr_speed)
+
     def on_loop(self):
-        pass
+        self.hitbox.update()
 
     def on_render(self):
         self._display_surf.fill((168, 238, 121))
