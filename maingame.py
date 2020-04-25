@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
     # Constructor function
     def __init__(self, x, y):
         # Call the parent's constructor
-        super().__init__()
+        super(Player, self).__init__()
         self.x = x
         self.y = y
         self.image = pygame.image.load("dad1.png").convert_alpha()
@@ -104,7 +104,7 @@ class Hitbox(Player):
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
-        super().__init__()
+        super(Enemy, self).__init__()
 
         self.image = pygame.image.load('sombi1.png').convert_alpha()
         self.rect = self.image.get_rect()
@@ -179,7 +179,7 @@ class Enemy(pygame.sprite.Sprite):
 class Wall(pygame.sprite.Sprite):
     def __init__(self, sprite, pos):
         # Call the parent's constructor
-        super().__init__()
+        super(Wall, self).__init__()
         self.image = pygame.image.load(sprite).convert()
         self.rect = self.image.get_rect()
 
@@ -209,7 +209,7 @@ class Dog(pygame.sprite.Sprite):
 
 class Turret(pygame.sprite.Sprite):
     def __init__(self, pos):
-        super().__init__()
+        super(Turret, self).__init__()
         self.image = pygame.image.load('turret1.png').convert_alpha()
         self.rect = self.image.get_rect()
 
