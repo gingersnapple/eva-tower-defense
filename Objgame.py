@@ -17,7 +17,6 @@ plr_y = 500
 SCREEN_WIDTH = 1536
 SCREEN_HEIGHT = 864
 fullscreen = False
-
 clock = pygame.time.Clock()
 
 
@@ -289,12 +288,13 @@ class App:
                 self.hitbox.changespeed(plr_speed, 0)
             elif event.key == pygame.K_w:
                 self.hitbox.changespeed(0, -plr_speed)
+                self.player.kill()
             elif event.key == pygame.K_s:
                 self.hitbox.changespeed(0, plr_speed)
             elif event.key == pygame.K_SPACE:
                 for t in self.turrets:
-                    if self.player.rect.colliderect(t.rect):
-                        t.kill()
+                    if t in self.all_sprites and self.player.rect.colliderect(t.rect):
+                        self.all_sprites.remove(t)
                         self.turretcount += 1
                         self.buildone = True
 
