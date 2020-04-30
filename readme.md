@@ -13,3 +13,6 @@ Det kunne jeg godt bruge hjælp med.
 23/4/2020:
 Fortsætter med OOP. Turrets vil ikke forsvinde nu.
 Tænker at jeg vil fikse det inden næste gang
+
+30/4/2020:
+Biksede for længe med en bug. jeg laver noget mere i min fritid.
