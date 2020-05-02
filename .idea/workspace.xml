@@ -19,9 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="python 3.8.2">
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tower-defense-eva.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tower-defense-eva.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/INSTALLER" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/INSTALLER" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/METADATA" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/METADATA" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/top_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/top_level.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +56,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -63,7 +67,7 @@
       <recent name="C:\Users\Eva\PycharmProjects\towerDefense" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Objgame">
+  <component name="RunManager" selected="Python.maingame">
     <configuration name="Objgame" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="tower-defense-eva" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -139,7 +143,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:/Users/Eva/PycharmProjects/towerDefense/old.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/PycharmProjects/towerDefense/old.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -259,7 +263,21 @@
       <option name="project" value="LOCAL" />
       <updated>1588250279673</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="turret placering virker (bliver dog ikke slettet fra memory)">
+      <created>1588251516274</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1588251516274</updated>
+    </task>
+    <task id="LOCAL-00011" summary="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret.">
+      <created>1588251654969</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1588251654969</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -285,9 +303,15 @@
     <MESSAGE value="Små omskrivninger til python 2.7" />
     <MESSAGE value="nyeste" />
     <MESSAGE value="python 3.8.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="python 3.8.2" />
+    <MESSAGE value="turret placering virker (bliver dog ikke slettet fra memory)" />
+    <MESSAGE value="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret." />
+    <option name="LAST_COMMIT_MESSAGE" value="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret." />
   </component>
   <component name="WindowStateProjectService">
+    <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="484" y="8" key="#Objgame/0.0.1536.824@0.0.1536.824" timestamp="1588378044631" />
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588250044916">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -304,26 +328,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="420" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587647442470" />
-    <state x="227" y="124" key="FileChooserDialogImpl" timestamp="1587851142800">
+    <state x="227" y="124" key="FileChooserDialogImpl" timestamp="1588378379860">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587851142800" />
-    <state width="1515" height="194" key="GridCell.Tab.0.bottom" timestamp="1588251395168">
+    <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588378379860" />
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1588378483809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="194" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588251395168" />
-    <state width="1515" height="194" key="GridCell.Tab.0.center" timestamp="1588251395168">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588378483809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1588378483809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="194" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588251395168" />
-    <state width="1515" height="194" key="GridCell.Tab.0.left" timestamp="1588251395168">
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588378483809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1588378483809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="194" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588251395168" />
-    <state width="1515" height="194" key="GridCell.Tab.0.right" timestamp="1588251395168">
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588378483809" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1588378483809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="194" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588251395168" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588378483809" />
     <state width="1515" height="257" key="GridCell.Tab.1.bottom" timestamp="1584378562308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -344,22 +368,22 @@
     </state>
     <state width="1515" height="257" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584378562307" />
     <state width="1579" height="257" key="GridCell.Tab.1.right/0.0.1600.850@0.0.1600.850" timestamp="1584375792293" />
-    <state x="277" y="55" key="SettingsEditor" timestamp="1588250132994">
+    <state x="277" y="55" key="SettingsEditor" timestamp="1588378391503">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588250132994" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588250290714">
+    <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588378391503" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588251667023">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588250290714" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588251667023" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588248555701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1588248555701" />
-    <state x="762" y="0" width="781" height="830" key="dock-window-1" timestamp="1588250593102">
+    <state x="762" y="0" width="781" height="830" key="dock-window-1" timestamp="1588283216203">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="762" y="0" width="781" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1588250593102" />
+    <state x="762" y="0" width="781" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1588283216203" />
     <state x="793" y="0" width="814" height="857" key="dock-window-1/0.0.1600.850@0.0.1600.850" timestamp="1585832438647" />
     <state x="793" y="0" width="814" height="867" key="dock-window-1/0.0.1600.860@0.0.1600.860" timestamp="1587383614499" />
     <state x="792" y="0" width="816" height="868" key="dock-window-1/0.0.1920.1030@0.0.1920.1030" timestamp="1584971833077" />
