@@ -324,8 +324,7 @@ while not done:
     screen.fill(BACKDROP)
 
     # every frame has a 1/100 chance of spawning an enemy
-    danger = random.randrange(1, 101)
-    if danger == 1:
+    if random.randrange(1, 101) == 1:
         new_enemy = Enemy()
         enemies.add(new_enemy)
         all_sprites.add(new_enemy)
@@ -340,7 +339,6 @@ while not done:
     screen.blit(player.image, player.rect)
 
     pygame.display.flip()
-
     clock.tick(60)
     if startup:
         startup = False

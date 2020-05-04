@@ -20,12 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tower-defense-eva.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tower-defense-eva.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bullet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sprites/bullet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/t.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/INSTALLER" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/INSTALLER" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/METADATA" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/METADATA" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/top_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pygame-1.9.6.dist-info/top_level.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maingame.py" beforeDir="false" afterPath="$PROJECT_DIR$/maingame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +67,7 @@
       <recent name="C:\Users\Eva\PycharmProjects\towerDefense" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.maingame">
+  <component name="RunManager" selected="Python.Objgame">
     <configuration name="Objgame" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="tower-defense-eva" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -152,6 +152,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="t" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tower-defense-eva" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/t.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="towerDefense" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -179,10 +200,12 @@
       <item itemvalue="Python.main" />
       <item itemvalue="Python.old" />
       <item itemvalue="Python.test" />
+      <item itemvalue="Python.t" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Objgame" />
+        <item itemvalue="Python.t" />
         <item itemvalue="Python.old" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.test" />
@@ -332,22 +355,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588378379860" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1588378483809">
+    <state width="1515" height="247" key="GridCell.Tab.0.bottom" timestamp="1588598005032">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588378483809" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1588378483809">
+    <state width="1515" height="247" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588598005031" />
+    <state width="1515" height="247" key="GridCell.Tab.0.center" timestamp="1588598005031">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588378483809" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1588378483809">
+    <state width="1515" height="247" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588598005031" />
+    <state width="1515" height="247" key="GridCell.Tab.0.left" timestamp="1588598005031">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588378483809" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1588378483809">
+    <state width="1515" height="247" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588598005031" />
+    <state width="1515" height="247" key="GridCell.Tab.0.right" timestamp="1588598005031">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588378483809" />
+    <state width="1515" height="247" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588598005031" />
     <state width="1515" height="257" key="GridCell.Tab.1.bottom" timestamp="1584378562308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -380,18 +403,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1588248555701" />
-    <state x="762" y="0" width="781" height="830" key="dock-window-1" timestamp="1588283216203">
+    <state x="791" y="0" width="759" height="809" key="dock-window-1" timestamp="1588596196639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="762" y="0" width="781" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1588283216203" />
+    <state x="791" y="0" width="759" height="809" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1588596196639" />
     <state x="793" y="0" width="814" height="857" key="dock-window-1/0.0.1600.850@0.0.1600.850" timestamp="1585832438647" />
     <state x="793" y="0" width="814" height="867" key="dock-window-1/0.0.1600.860@0.0.1600.860" timestamp="1587383614499" />
     <state x="792" y="0" width="816" height="868" key="dock-window-1/0.0.1920.1030@0.0.1920.1030" timestamp="1584971833077" />
     <state x="793" y="0" width="814" height="867" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1584971765313" />
-    <state x="762" y="0" width="781" height="830" key="dock-window-2" timestamp="1584370234802">
+    <state x="762" y="0" width="781" height="830" key="dock-window-2" timestamp="1588596430110">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="762" y="0" width="781" height="830" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1584370234802" />
+    <state x="762" y="0" width="781" height="830" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1588596430110" />
     <state x="707" y="0" width="1220" height="922" key="dock-window-2/0.0.1600.850@0.0.1600.850" timestamp="1584370219394" />
     <state x="762" y="0" width="781" height="830" key="dock-window-3" timestamp="1584371222800">
       <screen x="0" y="0" width="1536" height="824" />
@@ -411,6 +434,11 @@
           <url>file://C:/Python 3.7/Lib/site-packages/pygame/sprite.py</url>
           <line>105</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/pygame/sprite.py</url>
+          <line>165</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
