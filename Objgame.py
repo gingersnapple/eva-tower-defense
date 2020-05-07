@@ -11,6 +11,8 @@ wall_scale = 6
 framerate = 30
 plr_speed = 6
 som_speed = 0.5
+turretbuffer = 0.5
+bulletspeed = 16
 plr_x = 10
 plr_y = 500
 
@@ -138,9 +140,10 @@ class Turret(pygame.sprite.Sprite):
         self.image = pygame.image.load('turret1.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.range = 500
-        self.buffer = 3
+        self.buffer = turretbuffer
         self.oldtime = time.time()
         self.timer = 0
+        self.blind = False
 
         # replace new_width and new_height with the desired width and height
         self.image = pygame.transform.scale(self.image,
@@ -152,16 +155,20 @@ class Turret(pygame.sprite.Sprite):
 
     def update(self):
         for t in theApp.enemies:
-            tx = int(t.rect.x)
-            ty = int(t.rect.y)
-            x = tx - self.rect.x
-            y = ty - self.rect.y
-            s = math.sqrt((x ** 2) + (y ** 2))
+            line = pygame.draw.line(theApp._display_surf, (0, 0, 0), (self.rect.x, self.rect.y + 50), (t.rect.x, t.rect.y))
+            linelen = math.sqrt((t.rect.x - self.rect.x) ** 2 + (t.rect.y - self.rect.y) ** 2)
             self.timer = time.time() - self.oldtime
-            if s < self.range and self.timer > self.buffer:
-                new_bullet = Bullet(self.rect, t)
-                theApp.bullets.add(new_bullet)
-                theApp.all_sprites.append(new_bullet)
+            if self.timer > self.buffer and linelen < self.range:
+                for w in theApp.wall_list:
+                    if line.colliderect(w.rect):
+                        self.blind = True
+                        break
+                if not self.blind:
+                    self.oldtime = time.time()
+                    new_bullet = Bullet(self.rect, t)
+                    theApp.bullets.add(new_bullet)
+                    theApp.all_sprites.append(new_bullet)
+                self.blind = False
 
 
 class Bullet(pygame.sprite.Sprite):
@@ -169,7 +176,7 @@ class Bullet(pygame.sprite.Sprite):
         super(Bullet, self).__init__()
         self.image = pygame.image.load('bullet.png').convert_alpha()
         self.rect = self.image.get_rect()
-        self.speed = 10
+        self.speed = bulletspeed
         self.target = target
 
         # replace new_width and new_height with the desired width and height
@@ -177,32 +184,35 @@ class Bullet(pygame.sprite.Sprite):
                                             (self.image.get_size()[0] * creature_scale,
                                              self.image.get_size()[1] * creature_scale))
         self.rect = self.image.get_rect()
-        self.rect.x = (int(pos[0]))
-        self.rect.y = (int(pos[1]))
+        self.x = pos[0]
+        self.y = pos[1]
+        self.goal = (target.rect.x + 10, target.rect.y + 10)
 
-        self.goal = (target.rect[0]+10, target.rect[1]+10)
-        px = int(self.goal[0])
-        py = int(self.goal[1])
-        x = px - self.rect.x
-        y = py - self.rect.y
+        # setup til skudbane
         v = self.speed
+        x = self.goal[0] - self.x
+        y = self.goal[1] - self.y
         s = math.sqrt((x ** 2) + (y ** 2))
-        self.dx = v * (x / s)
-        self.dy = v * (y / s)
-        self.steps = round(s / v)
+        self.dx = float(v * (x / s))
+        self.dy = float(v * (y / s))
 
     def update(self):
-        self.rect.x += self.dx
-        self.rect.y += self.dy
-        self.steps -= 1
+        self.x += self.dx
+        self.y += self.dy
+        self.rect.x = round(self.x)
+        self.rect.y = round(self.y)
         for enemy in theApp.enemies:
             if enemy in theApp.all_sprites and self.rect.colliderect(enemy.rect):
                 enemy.damage(1)
+                if self in theApp.all_sprites:
+                    theApp.all_sprites.remove(self)
                 self.kill()
-                break
 
-        if self.steps < 1:
-            self.kill()
+        for wall in theApp.wall_list:
+            if self.rect.colliderect(wall.rect):
+                if self in theApp.all_sprites:
+                    theApp.all_sprites.remove(self)
+                self.kill()
 
 
 class Enemy(pygame.sprite.Sprite):
@@ -212,7 +222,8 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.image.load('sombi1.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.speed = som_speed
-        self. health = 3
+        self.health = 3
+
         # replace new_width and new_height with the desired width and height
         self.image = pygame.transform.scale(self.image,
                                             (self.image.get_size()[0] * creature_scale,
@@ -238,50 +249,64 @@ class Enemy(pygame.sprite.Sprite):
             i[0] = i[0] * 48
             i[1] = i[1] * 48
 
-        self.rect.x = self.agenda[0][0]
-        self.rect.y = self.agenda[0][1]
+        # position bliver lagret i float seperat fra rect så fjenderne kan bevæge sig i små trin
+        self.x = self.agenda[0][0]
+        self.y = self.agenda[0][1]
         self.dx = 0
         self.dy = 0
         self.steps = 0
         self.goal = (0, 0)
-        self.stage = 1
+        self.stage = 0
         self.startup = True
-        self.moving = False
 
     def moveto(self, point):
-        px = int(point[0])
-        py = int(point[1])
-        x = px - self.rect.x
-        y = py - self.rect.y
+        self.goal = point
         v = self.speed
+        x = point[0] - self.rect.x
+        y = point[1] - self.rect.y
         s = math.sqrt((x ** 2) + (y ** 2))
-        self.dx = v * (x / s)
-        self.dy = v * (y / s)
-        self.steps = round(s / v)
-        self.goal = (point[0], point[1])
-        self.moving = True
+        self.dx = float(v * (x / s))
+        self.dy = float(v * (y / s))
+        self.steps = round((s / v))
 
     def update(self):
-        if self.startup:
-            self.moveto(self.agenda[1])
-            self.startup = False
-
-        if self.moving:
-            self.rect.x += self.dx
-            self.rect.y += self.dy
-            self.steps -= 1
-            if self.steps < 1:
-                self.moving = False
-                if self.stage + 1 < len(self.agenda):
-                    self.stage += 1
-                    self.moveto(self.agenda[self.stage])
-                else:
-                    self.kill()
+        self.x += self.dx
+        self.y += self.dy
+        self.rect.x = round(self.x)
+        self.rect.y = round(self.y)
+        # self.rect = (self.rect[0] + self.dx, self.rect[1] + self.dy)
+        self.steps -= 1
+        if self.steps < 1:
+            self.stage += 1
+            if self.stage + 1 > len(self.agenda):
+                self.kill()
+            else:
+                self.moveto(self.agenda[self.stage])
 
     def damage(self, dmg):
         self.health -= dmg
-        if self.health > 1:
+        if self.health == 2:
+            self.image = pygame.image.load('sombi2.png').convert_alpha()
+            self.image = pygame.transform.scale(self.image,
+                                                (self.image.get_size()[0] * creature_scale,
+                                                 self.image.get_size()[1] * creature_scale))
+
+        elif self.health == 1:
+            self.image = pygame.image.load('sombi3.png').convert_alpha()
+            self.image = pygame.transform.scale(self.image,
+                                                (self.image.get_size()[0] * creature_scale,
+                                                 self.image.get_size()[1] * creature_scale))
+
+        if self.health < 1:
+            # move blood splatter to back
+            theApp.all_sprites.remove(self)
+            theApp.all_sprites.insert(0, self)
+            self.image = pygame.image.load('sombi4.png').convert_alpha()
+            self.image = pygame.transform.scale(self.image,
+                                                (self.image.get_size()[0] * creature_scale,
+                                                 self.image.get_size()[1] * creature_scale))
             self.kill()
+
 
 class App:
     def __init__(self):
@@ -338,7 +363,6 @@ class App:
         self.all_sprites.extend(self.wall_list)
         self.all_sprites.extend([self.dog, self.player])
 
-
     def on_event(self, event):
         if event.type == pygame.QUIT:
             self._running = False
@@ -356,7 +380,8 @@ class App:
             elif event.key == pygame.K_SPACE:
                 for t in self.turrets:
                     if t in self.all_sprites and self.player.rect.colliderect(t.rect):
-                        self.all_sprites.remove(t)
+                        if t in theApp.all_sprites:
+                            self.all_sprites.remove(t)
                         t.kill()
                         self.turretcount += 1
                         self.buildone = True

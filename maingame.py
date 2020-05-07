@@ -11,7 +11,7 @@ creature_scale = 3
 wall_scale = 6
 framerate = 30
 plr_speed = 6
-som_speed = 0.5
+som_speed = 2
 plr_x = 10
 plr_y = 500
 turretcount = 7
@@ -135,46 +135,40 @@ class Enemy(pygame.sprite.Sprite):
             i[0] = i[0] * 48
             i[1] = i[1] * 48
 
-        self.rect = self.agenda[0]
+        self.x = self.agenda[0][0]
+        self.y = self.agenda[0][1]
         self.dx = 0
         self.dy = 0
         self.steps = 0
         self.goal = (0, 0)
-        self.stage = 1
+        self.stage = 0
         self.startup = True
-        self.moving = False
 
     def moveto(self, point):
-        px = int(point[0])
-        py = int(point[1])
-        x = px - self.rect[0]
-        y = py - self.rect[1]
+        self.goal = point
         v = self.speed
-        s = math.sqrt((x ** 2) + (y ** 2))
-        self.dx = v * (x / s)
-        self.dy = v * (y / s)
-        self.steps = round(s / v)
-        self.goal = (point[0], point[1])
-        self.moving = True
+        x = point[0] - self.x
+        y = point[1] - self.y
+        s = math.sqrt((x**2)+(y**2))
+        self.dx = float(v * (x / s))
+        self.dy = float(v * (y / s))
+        self.steps = round((s / v))
 
     def update(self):
-        if self.startup:
-            self.moveto(self.agenda[1])
-            self.startup = False
 
-        if self.moving:
-            self.rect = (self.rect[0] + self.dx, self.rect[1] + self.dy)
-            print("moved " + str(self.dx) + ", " + str(self.dy))
-            self.steps -= 1
-            if self.steps < 1:
-                self.moving = False
-                # uncomment for glitchy but precise ending
-                # self.rect = self.goal
-                if self.stage + 1 < len(self.agenda):
-                    self.stage += 1
-                    self.moveto(self.agenda[self.stage])
-                else:
-                    self.kill()
+        self.x += self.dx
+        self.y += self.dy
+        self.rect.x = round(self.x)
+        self.rect.y = round(self.y)
+        # self.rect = (self.rect[0] + self.dx, self.rect[1] + self.dy)
+        self.steps -= 1
+        if self.steps < 1:
+            self.stage += 1
+            if self.stage +1 > len(self.agenda):
+                self.kill()
+            else:
+                self.moveto(self.agenda[self.stage])
+
 
 
 class Wall(pygame.sprite.Sprite):
@@ -280,6 +274,12 @@ buildone = False
 startup = True
 done = False
 
+# every frame has a 1/100 chance of spawning an enemy
+# if random.randrange(1, 101) == 1:
+new_enemy = Enemy()
+enemies.add(new_enemy)
+all_sprites.add(new_enemy)
+
 while not done:
 
     for event in pygame.event.get():
@@ -323,12 +323,6 @@ while not done:
                 hitbox.changespeed(0, -plr_speed)
 
     screen.fill(BACKDROP)
-
-    # every frame has a 1/100 chance of spawning an enemy
-    if random.randrange(1, 101) == 1:
-        new_enemy = Enemy()
-        enemies.add(new_enemy)
-        all_sprites.add(new_enemy)
 
     enemies.update()
     hitbox.update()

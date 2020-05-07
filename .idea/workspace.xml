@@ -19,10 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="arbejde paa turret skydning">
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="forsøger at få turrets til at virke. virkeligt broken atm">
+      <change afterPath="$PROJECT_DIR$/sombi2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sombi3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sombi4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maingame.py" beforeDir="false" afterPath="$PROJECT_DIR$/maingame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sombi1.png" beforeDir="false" afterPath="$PROJECT_DIR$/sombi1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprites/sombi1.mdp" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/sombi1.mdp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588598106851</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="forsøger at få turrets til at virke. virkeligt broken atm">
+      <created>1588857086763</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1588857086763</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,7 +345,8 @@
     <MESSAGE value="turret placering virker (bliver dog ikke slettet fra memory)" />
     <MESSAGE value="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret." />
     <MESSAGE value="arbejde paa turret skydning" />
-    <option name="LAST_COMMIT_MESSAGE" value="arbejde paa turret skydning" />
+    <MESSAGE value="forsøger at få turrets til at virke. virkeligt broken atm" />
+    <option name="LAST_COMMIT_MESSAGE" value="forsøger at få turrets til at virke. virkeligt broken atm" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
@@ -360,22 +373,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588378379860" />
-    <state width="1515" height="141" key="GridCell.Tab.0.bottom" timestamp="1588857018020">
+    <state width="1515" height="158" key="GridCell.Tab.0.bottom" timestamp="1588870274591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588857018020" />
-    <state width="1515" height="141" key="GridCell.Tab.0.center" timestamp="1588857018019">
+    <state width="1515" height="158" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588870274591" />
+    <state width="1515" height="158" key="GridCell.Tab.0.center" timestamp="1588870274591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588857018019" />
-    <state width="1515" height="141" key="GridCell.Tab.0.left" timestamp="1588857018019">
+    <state width="1515" height="158" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588870274591" />
+    <state width="1515" height="158" key="GridCell.Tab.0.left" timestamp="1588870274591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588857018019" />
-    <state width="1515" height="141" key="GridCell.Tab.0.right" timestamp="1588857018019">
+    <state width="1515" height="158" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588870274591" />
+    <state width="1515" height="158" key="GridCell.Tab.0.right" timestamp="1588870274591">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588857018019" />
+    <state width="1515" height="158" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588870274591" />
     <state width="1515" height="257" key="GridCell.Tab.1.bottom" timestamp="1584378562308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -400,26 +413,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588378391503" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588598122823">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588857096500">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588598122823" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588857096500" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588248555701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1588248555701" />
-    <state x="791" y="0" width="759" height="809" key="dock-window-1" timestamp="1588596196639">
+    <state x="762" y="0" width="781" height="830" key="dock-window-1" timestamp="1588861345752">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="791" y="0" width="759" height="809" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1588596196639" />
+    <state x="762" y="0" width="781" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1588861345752" />
     <state x="793" y="0" width="814" height="857" key="dock-window-1/0.0.1600.850@0.0.1600.850" timestamp="1585832438647" />
     <state x="793" y="0" width="814" height="867" key="dock-window-1/0.0.1600.860@0.0.1600.860" timestamp="1587383614499" />
     <state x="792" y="0" width="816" height="868" key="dock-window-1/0.0.1920.1030@0.0.1920.1030" timestamp="1584971833077" />
     <state x="793" y="0" width="814" height="867" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1584971765313" />
-    <state x="762" y="0" width="781" height="830" key="dock-window-2" timestamp="1588596430110">
+    <state x="791" y="77" width="759" height="621" key="dock-window-2" timestamp="1588864618104">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="762" y="0" width="781" height="830" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1588596430110" />
+    <state x="791" y="77" width="759" height="621" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1588864618104" />
     <state x="707" y="0" width="1220" height="922" key="dock-window-2/0.0.1600.850@0.0.1600.850" timestamp="1584370219394" />
     <state x="762" y="0" width="781" height="830" key="dock-window-3" timestamp="1584371222800">
       <screen x="0" y="0" width="1536" height="824" />
@@ -427,10 +440,10 @@
     <state x="762" y="0" width="781" height="830" key="dock-window-3/0.0.1536.824@0.0.1536.824" timestamp="1584371222800" />
     <state x="793" y="0" width="814" height="857" key="dock-window-3/0.0.1600.850@0.0.1600.850" timestamp="1584371198368" />
     <state x="793" y="0" width="814" height="867" key="dock-window-3/0.0.1600.860@0.0.1600.860" timestamp="1584371134388" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1585571201852">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1588860272137">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1585571201852" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1588860272137" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
