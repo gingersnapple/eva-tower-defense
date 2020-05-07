@@ -164,6 +164,7 @@ class Enemy(pygame.sprite.Sprite):
 
         if self.moving:
             self.rect = (self.rect[0] + self.dx, self.rect[1] + self.dy)
+            print("moved " + str(self.dx) + ", " + str(self.dy))
             self.steps -= 1
             if self.steps < 1:
                 self.moving = False

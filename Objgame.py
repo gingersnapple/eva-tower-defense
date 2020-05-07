@@ -152,15 +152,14 @@ class Turret(pygame.sprite.Sprite):
 
     def update(self):
         for t in theApp.enemies:
-            tx = int(t.rect[0])
-            ty = int(t.rect[1])
+            tx = int(t.rect.x)
+            ty = int(t.rect.y)
             x = tx - self.rect.x
             y = ty - self.rect.y
             s = math.sqrt((x ** 2) + (y ** 2))
             self.timer = time.time() - self.oldtime
             if s < self.range and self.timer > self.buffer:
-                theApp.bullet = Bullet(t.rect)
-                new_bullet = Bullet(self.rect, t.pos, )
+                new_bullet = Bullet(self.rect, t)
                 theApp.bullets.add(new_bullet)
                 theApp.all_sprites.append(new_bullet)
 
@@ -168,7 +167,7 @@ class Turret(pygame.sprite.Sprite):
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, pos, target):
         super(Bullet, self).__init__()
-        self.image = pygame.image.load('bullet.png').convert()
+        self.image = pygame.image.load('bullet.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.speed = 10
         self.target = target
@@ -184,8 +183,8 @@ class Bullet(pygame.sprite.Sprite):
         self.goal = (target.rect[0]+10, target.rect[1]+10)
         px = int(self.goal[0])
         py = int(self.goal[1])
-        x = px - self.rect[0]
-        y = py - self.rect[1]
+        x = px - self.rect.x
+        y = py - self.rect.y
         v = self.speed
         s = math.sqrt((x ** 2) + (y ** 2))
         self.dx = v * (x / s)
@@ -193,7 +192,8 @@ class Bullet(pygame.sprite.Sprite):
         self.steps = round(s / v)
 
     def update(self):
-        self.rect = (self.rect[0] + self.dx, self.rect[1] + self.dy)
+        self.rect.x += self.dx
+        self.rect.y += self.dy
         self.steps -= 1
         for enemy in theApp.enemies:
             if enemy in theApp.all_sprites and self.rect.colliderect(enemy.rect):
@@ -238,7 +238,8 @@ class Enemy(pygame.sprite.Sprite):
             i[0] = i[0] * 48
             i[1] = i[1] * 48
 
-        self.rect = self.agenda[0]
+        self.rect.x = self.agenda[0][0]
+        self.rect.y = self.agenda[0][1]
         self.dx = 0
         self.dy = 0
         self.steps = 0
@@ -250,8 +251,8 @@ class Enemy(pygame.sprite.Sprite):
     def moveto(self, point):
         px = int(point[0])
         py = int(point[1])
-        x = px - self.rect[0]
-        y = py - self.rect[1]
+        x = px - self.rect.x
+        y = py - self.rect.y
         v = self.speed
         s = math.sqrt((x ** 2) + (y ** 2))
         self.dx = v * (x / s)
@@ -266,12 +267,11 @@ class Enemy(pygame.sprite.Sprite):
             self.startup = False
 
         if self.moving:
-            self.rect = (self.rect[0] + self.dx, self.rect[1] + self.dy)
+            self.rect.x += self.dx
+            self.rect.y += self.dy
             self.steps -= 1
             if self.steps < 1:
                 self.moving = False
-                # uncomment for glitchy but precise ending
-                # self.rect = self.goal
                 if self.stage + 1 < len(self.agenda):
                     self.stage += 1
                     self.moveto(self.agenda[self.stage])
@@ -303,7 +303,6 @@ class App:
         else:
             self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         self._running = True
-
 
         # Beskriver hvor vaeggene skal hen. er foreloebigt grimt skrevet fordi
         # enkelte vaegge ogsaa skal et par ekstra pixels i en retning
@@ -358,6 +357,7 @@ class App:
                 for t in self.turrets:
                     if t in self.all_sprites and self.player.rect.colliderect(t.rect):
                         self.all_sprites.remove(t)
+                        t.kill()
                         self.turretcount += 1
                         self.buildone = True
 
@@ -388,12 +388,16 @@ class App:
             # indsæt fjender lige over vægge
             self.all_sprites.insert(self.wallcount, new_enemy)
 
+        self.bullets.update()
         self.enemies.update()
         self.turrets.update()
         self.hitbox.update()
+
     def on_render(self):
         self._display_surf.fill((168, 238, 121))
         for sprite in self.all_sprites:
+            # blit each sprite onto display.
+            # (round(sprite.rect.x), round(sprite.rect.y)) fixes DeprecationWarning but breaks enemies and bullets
             self._display_surf.blit(sprite.image, sprite.rect)
 
         pygame.display.flip()

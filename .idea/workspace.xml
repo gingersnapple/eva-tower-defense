@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret.">
-      <change afterPath="$PROJECT_DIR$/bullet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sprites/bullet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t.py" afterDir="false" />
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="arbejde paa turret skydning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maingame.py" beforeDir="false" afterPath="$PROJECT_DIR$/maingame.py" afterDir="false" />
@@ -199,8 +196,8 @@
       <item itemvalue="Python.Objgame" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.old" />
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.t" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
@@ -300,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588251654969</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="arbejde paa turret skydning">
+      <created>1588598106851</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1588598106851</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,7 +332,8 @@
     <MESSAGE value="python 3.8.2" />
     <MESSAGE value="turret placering virker (bliver dog ikke slettet fra memory)" />
     <MESSAGE value="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret." />
-    <option name="LAST_COMMIT_MESSAGE" value="turret placering virker (bliver dog ikke slettet fra memory). readme opdateret." />
+    <MESSAGE value="arbejde paa turret skydning" />
+    <option name="LAST_COMMIT_MESSAGE" value="arbejde paa turret skydning" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
@@ -355,22 +360,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588378379860" />
-    <state width="1515" height="247" key="GridCell.Tab.0.bottom" timestamp="1588598005032">
+    <state width="1515" height="141" key="GridCell.Tab.0.bottom" timestamp="1588857018020">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="247" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588598005031" />
-    <state width="1515" height="247" key="GridCell.Tab.0.center" timestamp="1588598005031">
+    <state width="1515" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588857018020" />
+    <state width="1515" height="141" key="GridCell.Tab.0.center" timestamp="1588857018019">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="247" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588598005031" />
-    <state width="1515" height="247" key="GridCell.Tab.0.left" timestamp="1588598005031">
+    <state width="1515" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588857018019" />
+    <state width="1515" height="141" key="GridCell.Tab.0.left" timestamp="1588857018019">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="247" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588598005031" />
-    <state width="1515" height="247" key="GridCell.Tab.0.right" timestamp="1588598005031">
+    <state width="1515" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588857018019" />
+    <state width="1515" height="141" key="GridCell.Tab.0.right" timestamp="1588857018019">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="247" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588598005031" />
+    <state width="1515" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588857018019" />
     <state width="1515" height="257" key="GridCell.Tab.1.bottom" timestamp="1584378562308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -395,10 +400,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588378391503" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588251667023">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588598122823">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588251667023" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588598122823" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588248555701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
