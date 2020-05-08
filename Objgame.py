@@ -11,9 +11,12 @@ framerate = 30
 plr_speed = 6
 som_speed = 0.5
 turretbuffer = 0.5
+enemybuffer = 900
 bulletspeed = 16
 plr_x = 10
 plr_y = 500
+dogHP = 24
+enemyHP = 6
 
 # Screen dimensions
 SCREEN_WIDTH = 1536
@@ -45,14 +48,39 @@ class Dog(pygame.sprite.Sprite):
     def __init__(self):
         super(Dog, self).__init__()
         self.image = pygame.image.load('dog1.png').convert_alpha()
-        self.rect = self.image.get_rect()
+        self.health = dogHP
 
         # replace new_width and new_height with the desired width and height
         self.image = pygame.transform.scale(self.image,
                                             (self.image.get_size()[0] * creature_scale,
                                              self.image.get_size()[1] * creature_scale))
+        self.rect = self.image.get_rect()
         self.rect.x = (15 * 48 + 21)
         self.rect.y = (9 * 48)
+
+    def damage(self, dmg):
+        self.health -= dmg
+
+        if self.health <= (dogHP / 3) * 2:
+
+            if self.health > dogHP / 3:
+                self.image = pygame.image.load('dog2.png').convert_alpha()
+                self.image = pygame.transform.scale(self.image,
+                                                    (self.image.get_size()[0] * creature_scale,
+                                                     self.image.get_size()[1] * creature_scale))
+
+            elif self.health > 0:
+                self.image = pygame.image.load('dog3.png').convert_alpha()
+                self.image = pygame.transform.scale(self.image,
+                                                    (self.image.get_size()[0] * creature_scale,
+                                                     self.image.get_size()[1] * creature_scale))
+            else:
+                self.image = pygame.image.load('dog4.png').convert_alpha()
+                self.image = pygame.transform.scale(self.image,
+                                                    (self.image.get_size()[0] * creature_scale,
+                                                     self.image.get_size()[1] * creature_scale))
+                pygame.time.wait(3)
+                theApp._running = False
 
 
 class Player(pygame.sprite.Sprite):
@@ -63,7 +91,6 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.image = pygame.image.load("dad1.png").convert_alpha()
-        self.rect = self.image.get_rect()
         # replace new_width and new_height with the desired width and height
         self.image = pygame.transform.scale(self.image,
                                             (self.image.get_size()[0] * creature_scale,
@@ -202,16 +229,18 @@ class Bullet(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
+        self.speed = som_speed
+        self.health = enemyHP
+        self.buffer = enemybuffer
+        self.oldtime = pygame.time.get_ticks()
 
         self.image = pygame.image.load('sombi1.png').convert_alpha()
-        self.rect = self.image.get_rect()
-        self.speed = som_speed
-        self.health = 3
-
         # replace new_width and new_height with the desired width and height
         self.image = pygame.transform.scale(self.image,
                                             (self.image.get_size()[0] * creature_scale,
                                              self.image.get_size()[1] * creature_scale))
+        self.rect = self.image.get_rect()
+
         self.type = random.randrange(1, 6)
 
         if self.type == 1:
@@ -241,6 +270,7 @@ class Enemy(pygame.sprite.Sprite):
         self.steps = 0
         self.goal = (0, 0)
         self.stage = 0
+        self.attacking = False
         self.startup = True
 
     def moveto(self, point):
@@ -254,36 +284,49 @@ class Enemy(pygame.sprite.Sprite):
         self.steps = round((s / v))
 
     def update(self):
-        self.x += self.dx
-        self.y += self.dy
-        self.rect.x = round(self.x)
-        self.rect.y = round(self.y)
-        self.steps -= 1
-        if self.steps < 1:
-            self.stage += 1
-            if self.stage + 1 > len(self.agenda):
-                self.kill()
-            else:
-                self.moveto(self.agenda[self.stage])
+        if not self.attacking:
+            self.x += self.dx
+            self.y += self.dy
+            self.rect.x = round(self.x)
+            self.rect.y = round(self.y)
+            self.steps -= 1
+            if self.steps < 1:
+                self.stage += 1
+                if self.stage + 1 > len(self.agenda):
+                    # self.kill()
+                    self.attacking = True
+                    self.target = theApp.dog
+                else:
+                    self.moveto(self.agenda[self.stage])
+        else:
+            self.attack(self.target)
+
+    def attack(self, target):
+        now = pygame.time.get_ticks()
+        if now - self.oldtime >= self.buffer:
+            self.oldtime = now
+            target.damage(1)
 
     def damage(self, dmg):
         self.health -= dmg
-        if self.health == 2:
-            self.image = pygame.image.load('sombi2.png').convert_alpha()
-            self.image = pygame.transform.scale(self.image,
-                                                (self.image.get_size()[0] * creature_scale,
-                                                 self.image.get_size()[1] * creature_scale))
 
-        elif self.health == 1:
-            self.image = pygame.image.load('sombi3.png').convert_alpha()
-            self.image = pygame.transform.scale(self.image,
-                                                (self.image.get_size()[0] * creature_scale,
-                                                 self.image.get_size()[1] * creature_scale))
+        if self.health <= (enemyHP / 3) * 2:
 
-        if self.health < 1:
-            theApp.gore = Gore(self.rect.x, self.rect.y)
-            theApp.all_sprites.remove(self)
-            self.kill()
+            if self.health > enemyHP / 3:
+                self.image = pygame.image.load('sombi2.png').convert_alpha()
+                self.image = pygame.transform.scale(self.image,
+                                                    (self.image.get_size()[0] * creature_scale,
+                                                     self.image.get_size()[1] * creature_scale))
+
+            elif self.health > 0:
+                self.image = pygame.image.load('sombi3.png').convert_alpha()
+                self.image = pygame.transform.scale(self.image,
+                                                    (self.image.get_size()[0] * creature_scale,
+                                                     self.image.get_size()[1] * creature_scale))
+            else:
+                theApp.gore = Gore(self.rect.x, self.rect.y)
+                theApp.all_sprites.remove(self)
+                self.kill()
 
 
 class Gore(pygame.sprite.Sprite):
@@ -412,7 +455,7 @@ class App:
             self._display_surf.blit(sprite.image, sprite.rect)
 
         # display lower sprites on top of higher sprites
-        self.all_sprites.sort(key=lambda x: x.rect.y)
+        self.all_sprites.sort(key=lambda x: (x.rect.y + x.rect.height))
         for sprite in self.all_sprites:
             # blit each sprite onto display.
             self._display_surf.blit(sprite.image, sprite.rect)

@@ -19,12 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="Fjernede unødvændig hitbox objekt">
-      <change afterPath="$PROJECT_DIR$/blood.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/listtest" afterDir="false" />
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="blits sprites in order of height for immersion">
+      <change afterPath="$PROJECT_DIR$/dog2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dog3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dog4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sprites/dog2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sprites/dog3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sprites/dog4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sombi4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/bullet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dog1.png" beforeDir="false" afterPath="$PROJECT_DIR$/dog1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprites/bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/bullet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprites/dog.mdp" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/dog.mdp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprites/dog1.png" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/dog1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprites/turret.mdp" beforeDir="false" afterPath="$PROJECT_DIR$/sprites/turret.mdp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turret1.png" beforeDir="false" afterPath="$PROJECT_DIR$/turret1.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +65,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Objgame.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/Objgame.py" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -334,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588904027071</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="blits sprites in order of height for immersion">
+      <created>1588973188675</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1588973188675</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -367,7 +385,8 @@
     <MESSAGE value="Fixed a bunch of stuff including turrets. Next bugfix is enemies appearing beneath walls due to blood splatters being on the sprite list now. I hope to reorder the sprite list in order of sprite.rect.y so things can be on top of each other naturally" />
     <MESSAGE value="Fixed a bunch of stuff including turrets." />
     <MESSAGE value="Fjernede unødvændig hitbox objekt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fjernede unødvændig hitbox objekt" />
+    <MESSAGE value="blits sprites in order of height for immersion" />
+    <option name="LAST_COMMIT_MESSAGE" value="blits sprites in order of height for immersion" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
@@ -394,26 +413,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="420" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587647442470" />
-    <state x="227" y="124" key="FileChooserDialogImpl" timestamp="1588378379860">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588980143152">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588378379860" />
-    <state width="1515" height="200" key="GridCell.Tab.0.bottom" timestamp="1588972882407">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1588980143152" />
+    <state x="227" y="124" key="FileChooserDialogImpl" timestamp="1588979882412">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="200" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588972882407" />
-    <state width="1515" height="200" key="GridCell.Tab.0.center" timestamp="1588972882407">
+    <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588979882412" />
+    <state width="1515" height="200" key="GridCell.Tab.0.bottom" timestamp="1588981013269">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="200" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588972882407" />
-    <state width="1515" height="200" key="GridCell.Tab.0.left" timestamp="1588972882407">
+    <state width="1515" height="200" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588981013269" />
+    <state width="1515" height="200" key="GridCell.Tab.0.center" timestamp="1588981013268">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="200" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588972882407" />
-    <state width="1515" height="200" key="GridCell.Tab.0.right" timestamp="1588972882407">
+    <state width="1515" height="200" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588981013268" />
+    <state width="1515" height="200" key="GridCell.Tab.0.left" timestamp="1588981013268">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="200" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588972882407" />
+    <state width="1515" height="200" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588981013268" />
+    <state width="1515" height="200" key="GridCell.Tab.0.right" timestamp="1588981013268">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="200" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588981013268" />
     <state width="1515" height="257" key="GridCell.Tab.1.bottom" timestamp="1584378562308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -438,10 +461,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588378391503" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588904035785">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588973200660">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588904035785" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588973200660" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588248555701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
