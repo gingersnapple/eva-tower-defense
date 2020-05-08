@@ -7,7 +7,7 @@ import time
 
 BACKDROP = (168, 238, 121)
 creature_scale = 3
-wall_scale = 6
+wall_scale = 3
 framerate = 30
 plr_speed = 6
 som_speed = 0.5
@@ -27,7 +27,7 @@ class Wall(pygame.sprite.Sprite):
     def __init__(self, sprite, pos):
         # Call the parent's constructor
         super(Wall, self).__init__()
-        self.image = pygame.image.load(sprite).convert()
+        self.image = pygame.image.load(sprite).convert_alpha()
         self.rect = self.image.get_rect()
 
         # replace new_width and new_height with the desired width and height
@@ -39,6 +39,7 @@ class Wall(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = (pos[0])
         self.rect.y = (pos[1])
+        self.rect.inflate_ip(0, -30)
 
 
 class Dog(pygame.sprite.Sprite):
@@ -78,21 +79,6 @@ class Player(pygame.sprite.Sprite):
         self.change_y = 0
         self.walls = None
 
-    def update(self):
-        # move to hitbox
-        self.rect.x = theApp.hitbox.rect.x
-        self.rect.y = (theApp.hitbox.rect.y - 48)
-
-
-class Hitbox(Player):
-    def __init__(self):
-        super(Hitbox, self).__init__(10, 500)
-        self.surf = pygame.Surface((42, 15))
-        self.rect = self.surf.get_rect()
-
-        self.rect.x = theApp.player.x
-        self.rect.y = (theApp.player.y + 48)
-
     def changespeed(self, x, y):
         self.change_x += x
         self.change_y += y
@@ -101,7 +87,7 @@ class Hitbox(Player):
         # Move left/right
         self.rect.x += self.change_x
 
-        for w in self.walls:
+        for w in theApp.wall_list:
             if self.rect.colliderect(w.rect):
                 if self.change_x > 0:
                     self.rect.right = w.rect.left
@@ -113,7 +99,7 @@ class Hitbox(Player):
         self.rect.y += self.change_y
 
         # Check and see if we hit anything
-        for w in self.walls:
+        for w in theApp.wall_list:
             if self.rect.colliderect(w.rect):
                 if self.change_y > 0:
                     self.rect.bottom = w.rect.top
@@ -130,8 +116,6 @@ class Hitbox(Player):
             self.rect.top = 48
         if self.rect.bottom > SCREEN_HEIGHT:
             self.rect.bottom = SCREEN_HEIGHT
-
-        theApp.player.update()
 
 
 class Turret(pygame.sprite.Sprite):
@@ -155,7 +139,7 @@ class Turret(pygame.sprite.Sprite):
 
     def update(self):
         for t in theApp.enemies:
-            line = pygame.draw.line(theApp._display_surf, (0, 0, 0), (self.rect.x, self.rect.y + 50), (t.rect.x, t.rect.y))
+            line = pygame.draw.line(theApp._display_surf, (0, 0, 0), (self.rect.x, self.rect.y + 50), (t.rect.x, t.rect.y + 50))
             linelen = math.sqrt((t.rect.x - self.rect.x) ** 2 + (t.rect.y - self.rect.y) ** 2)
             self.timer = time.time() - self.oldtime
             if self.timer > self.buffer and linelen < self.range:
@@ -165,7 +149,7 @@ class Turret(pygame.sprite.Sprite):
                         break
                 if not self.blind:
                     self.oldtime = time.time()
-                    new_bullet = Bullet(self.rect, t)
+                    new_bullet = Bullet((self.rect.x, self.rect.y + 50), t)
                     theApp.bullets.add(new_bullet)
                     theApp.all_sprites.append(new_bullet)
                 self.blind = False
@@ -332,31 +316,25 @@ class App:
         # Beskriver hvor vaeggene skal hen. er foreloebigt grimt skrevet fordi
         # enkelte vaegge ogsaa skal et par ekstra pixels i en retning
         sc = 48
-        self.wall_L1 = Wall("wall-long.png", (6 * sc, 2 * sc))
-        self.wall_L2 = Wall("wall-long.png", (18 * sc, 2 * sc))
-        self.wall_L3 = Wall("wall-long.png", (6 * sc, 14 * sc))
-        self.wall_L4 = Wall("wall-long.png", (18 * sc, 14 * sc))
-        self.wall_L5 = Wall("wall-long.png", (12 * sc, 6 * sc))
-        self.wall_S1 = Wall("wall-side.png", (3 * sc, 6 * sc))
-        self.wall_S2 = Wall("wall-side.png", (28 * sc, 6 * sc))
-
-        self.wall_SS1 = Wall("wall-short-side.png", (7 * sc, 6 * sc))
-
-        self.wall_SS2 = Wall("wall-short-side.png", (24 * sc - 6, 6 * sc))
-
-        self.wall_SF1 = Wall("wall-short-l.png", (8 * sc + 6, 10 * sc))
-        self.wall_SB1 = Wall("wall-short-l.png", (8 * sc + 6, 6 * sc))
-
-        self.wall_SF2 = Wall("wall-short-r.png", (22 * sc - 6, 10 * sc))
-        self.wall_SB2 = Wall("wall-short-r.png", (22 * sc - 6, 6 * sc))
+        self.wall_L1 = Wall("hay-long.png", (6 * sc, 2 * sc))
+        self.wall_L2 = Wall("hay-long.png", (18 * sc, 2 * sc))
+        self.wall_L3 = Wall("hay-long.png", (6 * sc, 14 * sc))
+        self.wall_L4 = Wall("hay-long.png", (18 * sc, 14 * sc))
+        self.wall_L5 = Wall("hay-long.png", (12 * sc, 6 * sc))
+        self.wall_S1 = Wall("hay-side.png", (3 * sc, 6 * sc))
+        self.wall_S2 = Wall("hay-side.png", (28 * sc, 6 * sc))
+        self.wall_SS1 = Wall("hay-short-side.png", (7 * sc, 6 * sc))
+        self.wall_SS2 = Wall("hay-short-side.png", (24 * sc, 6 * sc))
+        self.wall_SF1 = Wall("hay-short.png", (8 * sc, 10 * sc + 3))
+        self.wall_SB1 = Wall("hay-short.png", (8 * sc, 6 * sc))
+        self.wall_SF2 = Wall("hay-short.png", (22 * sc, 10 * sc + 3))
+        self.wall_SB2 = Wall("hay-short.png", (22 * sc, 6 * sc))
         self.wall_list = [self.wall_L1, self.wall_L2, self.wall_L3, self.wall_L4, self.wall_L5, self.wall_S1,
                           self.wall_S2, self.wall_SS1, self.wall_SS2, self.wall_SF1,
                           self.wall_SF2,
                           self.wall_SB1, self.wall_SB2]
 
         self.player = Player(plr_x, plr_y)
-        self.hitbox = Hitbox()
-        self.hitbox.walls = self.wall_list
         self.wallcount = len(self.wall_list)
         self.dog = Dog()
 
@@ -369,14 +347,13 @@ class App:
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
-                self.hitbox.changespeed(-plr_speed, 0)
+                self.player.changespeed(-plr_speed, 0)
             elif event.key == pygame.K_d:
-                self.hitbox.changespeed(plr_speed, 0)
+                self.player.changespeed(plr_speed, 0)
             elif event.key == pygame.K_w:
-                self.hitbox.changespeed(0, -plr_speed)
-                self.player.kill()
+                self.player.changespeed(0, -plr_speed)
             elif event.key == pygame.K_s:
-                self.hitbox.changespeed(0, plr_speed)
+                self.player.changespeed(0, plr_speed)
             elif event.key == pygame.K_SPACE:
                 for t in self.turrets:
                     if t in self.all_sprites and self.player.rect.colliderect(t.rect):
@@ -398,13 +375,13 @@ class App:
 
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
-                self.hitbox.changespeed(plr_speed, 0)
+                self.player.changespeed(plr_speed, 0)
             elif event.key == pygame.K_d:
-                self.hitbox.changespeed(-plr_speed, 0)
+                self.player.changespeed(-plr_speed, 0)
             elif event.key == pygame.K_w:
-                self.hitbox.changespeed(0, plr_speed)
+                self.player.changespeed(0, plr_speed)
             elif event.key == pygame.K_s:
-                self.hitbox.changespeed(0, -plr_speed)
+                self.player.changespeed(0, -plr_speed)
 
     def on_loop(self):
         if random.randrange(1, 101) == 1:
@@ -416,7 +393,7 @@ class App:
         self.bullets.update()
         self.enemies.update()
         self.turrets.update()
-        self.hitbox.update()
+        self.player.update()
 
     def on_render(self):
         self._display_surf.fill((168, 238, 121))
