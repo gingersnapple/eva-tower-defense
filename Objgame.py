@@ -1,4 +1,3 @@
-# coding=utf-8
 import pygame
 from pygame.locals import (FULLSCREEN)
 import math
@@ -39,7 +38,7 @@ class Wall(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = (pos[0])
         self.rect.y = (pos[1])
-        self.rect.inflate_ip(0, -30)
+        self.rect.inflate_ip(0, -50)
 
 
 class Dog(pygame.sprite.Sprite):
@@ -52,7 +51,8 @@ class Dog(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,
                                             (self.image.get_size()[0] * creature_scale,
                                              self.image.get_size()[1] * creature_scale))
-        self.rect = ((15 * 48 + 21), (9 * 48))
+        self.rect.x = (15 * 48 + 21)
+        self.rect.y = (9 * 48)
 
 
 class Player(pygame.sprite.Sprite):
@@ -139,7 +139,7 @@ class Turret(pygame.sprite.Sprite):
 
     def update(self):
         for t in theApp.enemies:
-            line = pygame.draw.line(theApp._display_surf, (0, 0, 0), (self.rect.x, self.rect.y + 50), (t.rect.x, t.rect.y + 50))
+            line = pygame.draw.line(theApp._display_surf, (0, 0, 0), (self.rect.x, self.rect.y + 10), (t.rect.x, t.rect.y + 50))
             linelen = math.sqrt((t.rect.x - self.rect.x) ** 2 + (t.rect.y - self.rect.y) ** 2)
             self.timer = time.time() - self.oldtime
             if self.timer > self.buffer and linelen < self.range:
@@ -149,7 +149,7 @@ class Turret(pygame.sprite.Sprite):
                         break
                 if not self.blind:
                     self.oldtime = time.time()
-                    new_bullet = Bullet((self.rect.x, self.rect.y + 50), t)
+                    new_bullet = Bullet((self.rect.x, self.rect.y + 10), t)
                     theApp.bullets.add(new_bullet)
                     theApp.all_sprites.append(new_bullet)
                 self.blind = False
@@ -258,7 +258,6 @@ class Enemy(pygame.sprite.Sprite):
         self.y += self.dy
         self.rect.x = round(self.x)
         self.rect.y = round(self.y)
-        # self.rect = (self.rect[0] + self.dx, self.rect[1] + self.dy)
         self.steps -= 1
         if self.steps < 1:
             self.stage += 1
@@ -282,14 +281,24 @@ class Enemy(pygame.sprite.Sprite):
                                                  self.image.get_size()[1] * creature_scale))
 
         if self.health < 1:
-            # move blood splatter to back
+            theApp.gore = Gore(self.rect.x, self.rect.y)
             theApp.all_sprites.remove(self)
-            theApp.all_sprites.insert(0, self)
-            self.image = pygame.image.load('sombi4.png').convert_alpha()
-            self.image = pygame.transform.scale(self.image,
-                                                (self.image.get_size()[0] * creature_scale,
-                                                 self.image.get_size()[1] * creature_scale))
             self.kill()
+
+
+class Gore(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super(Gore, self).__init__()
+        self.image = pygame.image.load('blood.png').convert_alpha()
+        self.rect = self.image.get_rect()
+
+        # replace new_width and new_height with the desired width and height
+        self.image = pygame.transform.scale(self.image,
+                                            (self.image.get_size()[0] * creature_scale,
+                                             self.image.get_size()[1] * creature_scale))
+        self.rect.x = (x)
+        self.rect.y = (y)
+        theApp.floor_sprites.append(self)
 
 
 class App:
@@ -299,6 +308,7 @@ class App:
         self.size = self.weight, self.height = SCREEN_WIDTH, SCREEN_HEIGHT
 
         self.all_sprites = []
+        self.floor_sprites = []
         self.enemies = pygame.sprite.Group()
         self.turrets = pygame.sprite.Group()
         self.bullets = pygame.sprite.Group()
@@ -397,9 +407,14 @@ class App:
 
     def on_render(self):
         self._display_surf.fill((168, 238, 121))
+        for sprite in self.floor_sprites:
+            # floor is blitted before anything else
+            self._display_surf.blit(sprite.image, sprite.rect)
+
+        # display lower sprites on top of higher sprites
+        self.all_sprites.sort(key=lambda x: x.rect.y)
         for sprite in self.all_sprites:
             # blit each sprite onto display.
-            # (round(sprite.rect.x), round(sprite.rect.y)) fixes DeprecationWarning but breaks enemies and bullets
             self._display_surf.blit(sprite.image, sprite.rect)
 
         pygame.display.flip()
