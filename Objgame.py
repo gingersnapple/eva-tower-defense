@@ -24,7 +24,7 @@ enemyHP = 6
 # screen dimensions
 SCREEN_WIDTH = 1536
 SCREEN_HEIGHT = 864
-fullscreen = True
+fullscreen = False
 
 # create clock object
 clock = pygame.time.Clock()
@@ -299,13 +299,11 @@ class Enemy(pygame.sprite.Sprite):
             if random.getrandbits(1) == 1:
                 self.agenda.extend([[16, 16], finpos()])
             else:
-                self.agenda.append([5.5, 12])
+                self.agenda.append([25.5, 12])
                 if random.getrandbits(1) == 1:
-                    self.agenda.extend([[12, 12], finpos()])
+                    self.agenda.extend([[19, 12], finpos()])
                 else:
-                    self.agenda.append([25.5, 12])
-                    if random.getrandbits(1) == 1:
-                        self.agenda.append([[25, 4], [20.5, 4], [20.5, 8, finpos()]])
+                    self.agenda.extend([[25, 4], [20.5, 4], [20.5, 8], finpos()])
 
         # scale to 48 pixel grid
         for i in self.agenda:
@@ -392,7 +390,6 @@ class App:
         self.buildone = False
 
 
-
     def on_init(self):
         pygame.init()
         if fullscreen:
@@ -429,13 +426,14 @@ class App:
         self.all_sprites.extend(self.wall_list)
         self.all_sprites.extend([self.dog, self.player])
 
-        # grid for navigation management when building game
+        # grid draw a grass tile in a 48 size grid
         self.grid = []
-        self.point_img = pygame.image.load("point.png").convert_alpha()
+        self.image = pygame.image.load("grasstile.png").convert()
+        scalesprite(self)
+
         for y in range(0, SCREEN_HEIGHT, 48):
             for x in range(0, SCREEN_WIDTH, 48):
-                point = (x, y)
-                self.grid.append(point)
+                self.grid.append([x, y])
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
@@ -497,7 +495,10 @@ class App:
             self._running = False
 
     def on_render(self):
-        self._display_surf.fill((168, 238, 121))
+        # draw grass
+        for p in self.grid:
+            self._display_surf.blit(self.image, p)
+
         for sprite in self.floor_sprites:
             # floor is blitted before anything else
             self._display_surf.blit(sprite.image, sprite.rect)
@@ -508,10 +509,6 @@ class App:
             # blit each sprite onto display.
             self._display_surf.blit(sprite.image, sprite.rect)
 
-        # draw grid
-        for p in self.grid:
-            # pygame.draw.circle(self._display_surf, (0, 0, 0), p, 5)
-            self._display_surf.blit(self.point_img, p)
         pygame.display.flip()
         clock.tick(60)
 
