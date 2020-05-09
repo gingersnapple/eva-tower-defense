@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="fixed rects for depth sorting">
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="minor improvements. next is enemy behaviour overhaul?">
+      <change afterPath="$PROJECT_DIR$/point.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sprites/gridplan.mdp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
     </list>
@@ -107,27 +110,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="towerDefense" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Eva\PycharmProjects\towerDefense\main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="maingame" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="tower-defense-eva" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -191,21 +173,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tower-defense-eva" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.maingame" />
       <item itemvalue="Python.Objgame" />
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.old" />
       <item itemvalue="Python.t" />
       <item itemvalue="Python.listtest" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Objgame" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.listtest" />
         <item itemvalue="Python.t" />
         <item itemvalue="Python.old" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -346,7 +349,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588981205596</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="minor improvements. next is enemy behaviour overhaul?">
+      <created>1588983142541</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1588983142541</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -381,7 +391,8 @@
     <MESSAGE value="Fjernede unødvændig hitbox objekt" />
     <MESSAGE value="blits sprites in order of height for immersion" />
     <MESSAGE value="fixed rects for depth sorting" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed rects for depth sorting" />
+    <MESSAGE value="minor improvements. next is enemy behaviour overhaul?" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor improvements. next is enemy behaviour overhaul?" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
@@ -416,50 +427,50 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588979882412" />
-    <state width="1515" height="200" key="GridCell.Tab.0.bottom" timestamp="1588982826328">
+    <state width="745" height="238" key="GridCell.Tab.0.bottom" timestamp="1589062025138">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="200" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588982826328" />
-    <state width="1515" height="200" key="GridCell.Tab.0.center" timestamp="1588982826327">
+    <state width="745" height="238" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589062025138" />
+    <state width="745" height="238" key="GridCell.Tab.0.center" timestamp="1589062025138">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="200" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588982826327" />
-    <state width="1515" height="200" key="GridCell.Tab.0.left" timestamp="1588982826327">
+    <state width="745" height="238" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589062025138" />
+    <state width="745" height="238" key="GridCell.Tab.0.left" timestamp="1589062025138">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="200" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588982826327" />
-    <state width="1515" height="200" key="GridCell.Tab.0.right" timestamp="1588982826327">
+    <state width="745" height="238" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589062025138" />
+    <state width="745" height="238" key="GridCell.Tab.0.right" timestamp="1589062025138">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="200" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588982826327" />
-    <state width="1515" height="257" key="GridCell.Tab.1.bottom" timestamp="1584378562308">
+    <state width="745" height="238" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589062025138" />
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1589051516499">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="257" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584378562308" />
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589051516499" />
     <state width="1579" height="257" key="GridCell.Tab.1.bottom/0.0.1600.850@0.0.1600.850" timestamp="1584375792296" />
-    <state width="1515" height="257" key="GridCell.Tab.1.center" timestamp="1584378562307">
+    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1589051516499">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="257" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584378562307" />
+    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1589051516499" />
     <state width="1579" height="257" key="GridCell.Tab.1.center/0.0.1600.850@0.0.1600.850" timestamp="1584375792292" />
-    <state width="1515" height="257" key="GridCell.Tab.1.left" timestamp="1584378562307">
+    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1589051516499">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="257" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584378562307" />
+    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1589051516499" />
     <state width="1579" height="257" key="GridCell.Tab.1.left/0.0.1600.850@0.0.1600.850" timestamp="1584375792289" />
-    <state width="1515" height="257" key="GridCell.Tab.1.right" timestamp="1584378562307">
+    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1589051516499">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="257" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584378562307" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1589051516499" />
     <state width="1579" height="257" key="GridCell.Tab.1.right/0.0.1600.850@0.0.1600.850" timestamp="1584375792293" />
     <state x="277" y="55" key="SettingsEditor" timestamp="1588378391503">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588378391503" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588981217422">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588983157764">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588981217422" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588983157764" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588248555701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -53,6 +53,7 @@ class Dog(pygame.sprite.Sprite):
         super(Dog, self).__init__()
         self.image = pygame.image.load('dog1.png').convert_alpha()
         self.health = dogHP
+        self.dead = False
 
         scalesprite(self)
         self.rect = self.image.get_rect()
@@ -80,8 +81,7 @@ class Dog(pygame.sprite.Sprite):
                 self.image = pygame.transform.scale(self.image,
                                                     (self.image.get_size()[0] * sprite_scale,
                                                      self.image.get_size()[1] * sprite_scale))
-                pygame.time.wait(3)
-                theApp._running = False
+                self.dead = True
 
 
 class Player(pygame.sprite.Sprite):
@@ -215,6 +215,8 @@ class Bullet(pygame.sprite.Sprite):
                     theApp.all_sprites.remove(self)
                 self.kill()
 
+def finpos():
+    return [16, 8]
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
@@ -228,26 +230,9 @@ class Enemy(pygame.sprite.Sprite):
         scalesprite(self)
         self.rect = self.image.get_rect()
 
+        # generate path from spawn point and decision tree
         self.type = random.randrange(1, 6)
-
-        if self.type == 1:
-            self.agenda = [[1, 1], [5, 4], [5, 12], [15, 12], [15, 9]]
-
-        elif self.type == 2:
-            self.agenda = [[16, 1], [16, 4], [11, 4], [11, 9], [15, 9]]
-
-        elif self.type == 3:
-            self.agenda = [[30, 1], [26, 4], [21, 4], [20.5, 9], [15, 9]]
-
-        elif self.type == 4:
-            self.agenda = [[1, 16], [14, 16], [15, 9]]
-
-        elif self.type == 5:
-            self.agenda = [[30, 16], [26, 12], [19, 12], [15, 9]]
-
-        for i in self.agenda:
-            i[0] = i[0] * 48
-            i[1] = i[1] * 48
+        self.getpath()
 
         # position bliver lagret i float seperat fra rect så fjenderne kan bevæge sig i små trin
         self.x = self.agenda[0][0]
@@ -259,6 +244,73 @@ class Enemy(pygame.sprite.Sprite):
         self.stage = 0
         self.attacking = False
         self.startup = True
+
+    def getpath(self):
+        if self.type == 1:
+            self.agenda = [[-1, -2], [2, 1]]
+            if random.getrandbits(1) == 1:
+                self.agenda.extend([[15, 1], [15, 4]])
+                if random.getrandbits(1) == 1:
+                    self.agenda.extend([[20.5, 4], [20.5, 8], finpos()])
+                else:
+                    self.agenda.extend([[10.5, 4], [10.5, 8], finpos()])
+            else:
+                self.agenda.append([5, 4])
+                if random.getrandbits(1) == 1:
+                    self.agenda.extend([[10.5, 4], [10.5, 8], finpos()])
+                else:
+                    self.agenda.extend([[5, 12], [14, 12], finpos()])
+
+        elif self.type == 2:
+            self.agenda = [[15.5, -2], [15.5, 3]]
+            if random.getrandbits(1) == 1:
+                self.agenda.extend([[10.5, 5], [10.5, 8], finpos()])
+            else:
+                self.agenda.extend([[20.5, 5], [20.5, 8], finpos()])
+
+        elif self.type == 3:
+            self.agenda = [[32, -2], [29, 1]]
+            if random.getrandbits(1) == 1:
+                self.agenda.extend([[16, 1], [16, 4]])
+                if random.getrandbits(1) == 1:
+                    self.agenda.extend([[20.5, 4], [20.5, 8], finpos()])
+                else:
+                    self.agenda.extend([[10.5, 4], [10.5, 8], finpos()])
+            else:
+                self.agenda.append([26, 4])
+                if random.getrandbits(1) == 1:
+                    self.agenda.extend([[20.5, 4], [20.5, 8], finpos()])
+                else:
+                    self.agenda.extend([[26, 12], [17, 12], finpos()])
+
+        elif self.type == 4:
+            self.agenda = [[-1, 18], [1, 16]]
+            if random.getrandbits(1) == 1:
+                self.agenda.extend([[15, 16], finpos()])
+            else:
+                self.agenda.append([5.5, 12])
+                if random.getrandbits(1) == 1:
+                    self.agenda.extend([[12, 12], finpos()])
+                else:
+                    self.agenda.extend([[6, 4], [10.5, 4], [10.5, 8], finpos()])
+
+        elif self.type == 5:
+            self.agenda = [[32, 18], [30, 16]]
+            if random.getrandbits(1) == 1:
+                self.agenda.extend([[16, 16], finpos()])
+            else:
+                self.agenda.append([5.5, 12])
+                if random.getrandbits(1) == 1:
+                    self.agenda.extend([[12, 12], finpos()])
+                else:
+                    self.agenda.append([25.5, 12])
+                    if random.getrandbits(1) == 1:
+                        self.agenda.append([[25, 4], [20.5, 4], [20.5, 8, finpos()]])
+
+        # scale to 48 pixel grid
+        for i in self.agenda:
+            i[0] = i[0] * 48
+            i[1] = i[1] * 48
 
     def moveto(self, point):
         self.goal = point
@@ -339,6 +391,8 @@ class App:
         self.turretcount = 7
         self.buildone = False
 
+
+
     def on_init(self):
         pygame.init()
         if fullscreen:
@@ -374,6 +428,14 @@ class App:
 
         self.all_sprites.extend(self.wall_list)
         self.all_sprites.extend([self.dog, self.player])
+
+        # grid for navigation management when building game
+        self.grid = []
+        self.point_img = pygame.image.load("point.png").convert_alpha()
+        for y in range(0, SCREEN_HEIGHT, 48):
+            for x in range(0, SCREEN_WIDTH, 48):
+                point = (x, y)
+                self.grid.append(point)
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
@@ -429,6 +491,11 @@ class App:
         self.turrets.update()
         self.player.update()
 
+        if self.dog.dead:
+            self.on_render()
+            time.sleep(3)
+            self._running = False
+
     def on_render(self):
         self._display_surf.fill((168, 238, 121))
         for sprite in self.floor_sprites:
@@ -441,6 +508,10 @@ class App:
             # blit each sprite onto display.
             self._display_surf.blit(sprite.image, sprite.rect)
 
+        # draw grid
+        for p in self.grid:
+            # pygame.draw.circle(self._display_surf, (0, 0, 0), p, 5)
+            self._display_surf.blit(self.point_img, p)
         pygame.display.flip()
         clock.tick(60)
 
