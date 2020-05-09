@@ -4,41 +4,45 @@ import math
 import random
 import time
 
+# misc. constants
 BACKDROP = (168, 238, 121)
-creature_scale = 3
-wall_scale = 3
+sprite_scale = 3
 framerate = 30
-plr_speed = 6
-som_speed = 0.5
-turretbuffer = 0.5
-enemybuffer = 900
-bulletspeed = 16
 plr_x = 10
 plr_y = 500
+
+# adjust for gameplay balance
+plr_speed = 6
+som_speed = 0.5
+turret_cooldown = 0.5
+enemy_cooldown = 900
+bullet_speed = 16
+turret_range = 300
 dogHP = 24
 enemyHP = 6
 
-# Screen dimensions
+# screen dimensions
 SCREEN_WIDTH = 1536
 SCREEN_HEIGHT = 864
-fullscreen = False
+fullscreen = True
+
+# create clock object
 clock = pygame.time.Clock()
 
+def scalesprite(sprite):
+    # replace new_width and new_height with the desired width and height
+    sprite.image = pygame.transform.scale(sprite.image,
+                                        (sprite.image.get_size()[0] * sprite_scale,
+                                         sprite.image.get_size()[1] * sprite_scale))
 
 class Wall(pygame.sprite.Sprite):
     def __init__(self, sprite, pos):
         # Call the parent's constructor
         super(Wall, self).__init__()
         self.image = pygame.image.load(sprite).convert_alpha()
+        scalesprite(self)
         self.rect = self.image.get_rect()
 
-        # replace new_width and new_height with the desired width and height
-        self.image = pygame.transform.scale(self.image,
-                                            (self.image.get_size()[0] * wall_scale,
-                                             self.image.get_size()[1] * wall_scale))
-
-        # Make our top-left corner the passed-in location.
-        self.rect = self.image.get_rect()
         self.rect.x = (pos[0])
         self.rect.y = (pos[1])
         self.rect.inflate_ip(0, -50)
@@ -50,10 +54,7 @@ class Dog(pygame.sprite.Sprite):
         self.image = pygame.image.load('dog1.png').convert_alpha()
         self.health = dogHP
 
-        # replace new_width and new_height with the desired width and height
-        self.image = pygame.transform.scale(self.image,
-                                            (self.image.get_size()[0] * creature_scale,
-                                             self.image.get_size()[1] * creature_scale))
+        scalesprite(self)
         self.rect = self.image.get_rect()
         self.rect.x = (15 * 48 + 21)
         self.rect.y = (9 * 48)
@@ -66,19 +67,19 @@ class Dog(pygame.sprite.Sprite):
             if self.health > dogHP / 3:
                 self.image = pygame.image.load('dog2.png').convert_alpha()
                 self.image = pygame.transform.scale(self.image,
-                                                    (self.image.get_size()[0] * creature_scale,
-                                                     self.image.get_size()[1] * creature_scale))
+                                                    (self.image.get_size()[0] * sprite_scale,
+                                                     self.image.get_size()[1] * sprite_scale))
 
             elif self.health > 0:
                 self.image = pygame.image.load('dog3.png').convert_alpha()
                 self.image = pygame.transform.scale(self.image,
-                                                    (self.image.get_size()[0] * creature_scale,
-                                                     self.image.get_size()[1] * creature_scale))
+                                                    (self.image.get_size()[0] * sprite_scale,
+                                                     self.image.get_size()[1] * sprite_scale))
             else:
                 self.image = pygame.image.load('dog4.png').convert_alpha()
                 self.image = pygame.transform.scale(self.image,
-                                                    (self.image.get_size()[0] * creature_scale,
-                                                     self.image.get_size()[1] * creature_scale))
+                                                    (self.image.get_size()[0] * sprite_scale,
+                                                     self.image.get_size()[1] * sprite_scale))
                 pygame.time.wait(3)
                 theApp._running = False
 
@@ -91,13 +92,8 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.image = pygame.image.load("dad1.png").convert_alpha()
-        # replace new_width and new_height with the desired width and height
-        self.image = pygame.transform.scale(self.image,
-                                            (self.image.get_size()[0] * creature_scale,
-                                             self.image.get_size()[1] * creature_scale))
+        scalesprite(self)
         self.rect = self.image.get_rect()
-        # (top left x, top left y, width, height)
-        # Make our top-left corner the passed-in location.
         self.rect.y = y
         self.rect.x = x
 
@@ -139,8 +135,8 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = 0
         if self.rect.right > SCREEN_WIDTH:
             self.rect.right = SCREEN_WIDTH
-        if self.rect.top < 48:
-            self.rect.top = 48
+        if self.rect.top < 0:
+            self.rect.top = 0
         if self.rect.bottom > SCREEN_HEIGHT:
             self.rect.bottom = SCREEN_HEIGHT
 
@@ -149,27 +145,23 @@ class Turret(pygame.sprite.Sprite):
     def __init__(self, pos):
         super(Turret, self).__init__()
         self.image = pygame.image.load('turret1.png').convert_alpha()
-        self.rect = self.image.get_rect()
-        self.range = 500
-        self.buffer = turretbuffer
-        self.oldtime = time.time()
-        self.timer = 0
+        self.range = turret_range
+        self.buffer = enemy_cooldown
+        self.oldtime = pygame.time.get_ticks()
         self.blind = False
 
-        # replace new_width and new_height with the desired width and height
-        self.image = pygame.transform.scale(self.image,
-                                            (self.image.get_size()[0] * creature_scale,
-                                             self.image.get_size()[1] * creature_scale))
+        scalesprite(self)
         self.rect = self.image.get_rect()
         self.rect.x = (pos[0])
         self.rect.y = (pos[1])
 
     def update(self):
         for t in theApp.enemies:
-            line = pygame.draw.line(theApp._display_surf, (0, 0, 0), (self.rect.x, self.rect.y + 10), (t.rect.x, t.rect.y + 50))
             linelen = math.sqrt((t.rect.x - self.rect.x) ** 2 + (t.rect.y - self.rect.y) ** 2)
-            self.timer = time.time() - self.oldtime
-            if self.timer > self.buffer and linelen < self.range:
+            now = pygame.time.get_ticks()
+            if now - self.oldtime >= self.buffer and linelen < self.range:
+                line = pygame.draw.line(theApp._display_surf, (0, 0, 0), (self.rect.x, self.rect.y + 10),
+                                        (t.rect.x, t.rect.y + 50))
                 for w in theApp.wall_list:
                     if line.colliderect(w.rect):
                         self.blind = True
@@ -179,6 +171,7 @@ class Turret(pygame.sprite.Sprite):
                     new_bullet = Bullet((self.rect.x, self.rect.y + 10), t)
                     theApp.bullets.add(new_bullet)
                     theApp.all_sprites.append(new_bullet)
+                    self.oldtime = now
                 self.blind = False
 
 
@@ -187,13 +180,10 @@ class Bullet(pygame.sprite.Sprite):
         super(Bullet, self).__init__()
         self.image = pygame.image.load('bullet.png').convert_alpha()
         self.rect = self.image.get_rect()
-        self.speed = bulletspeed
+        self.speed = bullet_speed
         self.target = target
 
-        # replace new_width and new_height with the desired width and height
-        self.image = pygame.transform.scale(self.image,
-                                            (self.image.get_size()[0] * creature_scale,
-                                             self.image.get_size()[1] * creature_scale))
+        scalesprite(self)
         self.rect = self.image.get_rect()
         self.x = pos[0]
         self.y = pos[1]
@@ -231,14 +221,11 @@ class Enemy(pygame.sprite.Sprite):
         super(Enemy, self).__init__()
         self.speed = som_speed
         self.health = enemyHP
-        self.buffer = enemybuffer
+        self.buffer = enemy_cooldown
         self.oldtime = pygame.time.get_ticks()
 
         self.image = pygame.image.load('sombi1.png').convert_alpha()
-        # replace new_width and new_height with the desired width and height
-        self.image = pygame.transform.scale(self.image,
-                                            (self.image.get_size()[0] * creature_scale,
-                                             self.image.get_size()[1] * creature_scale))
+        scalesprite(self)
         self.rect = self.image.get_rect()
 
         self.type = random.randrange(1, 6)
@@ -314,15 +301,12 @@ class Enemy(pygame.sprite.Sprite):
 
             if self.health > enemyHP / 3:
                 self.image = pygame.image.load('sombi2.png').convert_alpha()
-                self.image = pygame.transform.scale(self.image,
-                                                    (self.image.get_size()[0] * creature_scale,
-                                                     self.image.get_size()[1] * creature_scale))
+                scalesprite(self)
 
             elif self.health > 0:
                 self.image = pygame.image.load('sombi3.png').convert_alpha()
-                self.image = pygame.transform.scale(self.image,
-                                                    (self.image.get_size()[0] * creature_scale,
-                                                     self.image.get_size()[1] * creature_scale))
+                scalesprite(self)
+
             else:
                 theApp.gore = Gore(self.rect.x, self.rect.y)
                 theApp.all_sprites.remove(self)
@@ -335,10 +319,7 @@ class Gore(pygame.sprite.Sprite):
         self.image = pygame.image.load('blood.png').convert_alpha()
         self.rect = self.image.get_rect()
 
-        # replace new_width and new_height with the desired width and height
-        self.image = pygame.transform.scale(self.image,
-                                            (self.image.get_size()[0] * creature_scale,
-                                             self.image.get_size()[1] * creature_scale))
+        scalesprite(self)
         self.rect.x = (x)
         self.rect.y = (y)
         theApp.floor_sprites.append(self)
