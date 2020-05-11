@@ -1,5 +1,18 @@
 Readme fil til towerdefense project i programmering af Eva 2D
 
+Controls:
+[w]: up
+[a]: left
+[s]: down
+[d]: right
+hold [space]: build turret
+[space] on top of turret: remove turret
+
+You have max 6 turrets. Save the dog.
+
+
+Logbog
+
 16/4/2020:
 Jeg har lagt projektet op på github, og er begyndt på turrets i mit spil, som kan placeres og samles op med space.
 
@@ -26,4 +39,4 @@ Next bugfix is enemies appearing beneath walls due to blood splatters being on t
 I hope to reorder the sprite list in order of sprite.rect.y so things can be on top of each other naturally
 
 11/05/2020:
-Comments, cleaning up and balancing. I did a bunch in the weekend. Also apparently i missed that we needed to make a class diagram
+Comments, cleaning up and balancing. I did a bunch in the weekend. Also apparently i missed that we needed to make a class diagram.

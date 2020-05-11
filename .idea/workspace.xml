@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="comments">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="readme">
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -381,7 +380,21 @@
       <option name="project" value="LOCAL" />
       <updated>1589201245212</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="balancing">
+      <created>1589201740560</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1589201740560</updated>
+    </task>
+    <task id="LOCAL-00025" summary="readme">
+      <created>1589201920355</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1589201920355</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -421,7 +434,9 @@
     <MESSAGE value="grass background added." />
     <MESSAGE value="comments and better syntax" />
     <MESSAGE value="comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="comments" />
+    <MESSAGE value="balancing" />
+    <MESSAGE value="readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
@@ -496,10 +511,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-39" y="40" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589149707820" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1589189605935">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1589201750878">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1589189605935" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1589201750878" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589189616212">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
