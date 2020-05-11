@@ -24,3 +24,6 @@ Nåede langt med at få turrets til at skyde.
 Fixed a bunch of stuff including turrets. 
 Next bugfix is enemies appearing beneath walls due to blood splatters being on the sprite list now. 
 I hope to reorder the sprite list in order of sprite.rect.y so things can be on top of each other naturally
+
+11/05/2020:
+Comments, cleaning up and balancing. I did a bunch in the weekend. Also apparently i missed that we needed to make a class diagram
