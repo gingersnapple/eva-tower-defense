@@ -19,8 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="readme">
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="cleaned up files">
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/point.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/towerdefense.py" beforeDir="false" afterPath="$PROJECT_DIR$/towerdefense.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wall-long.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,8 +209,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.towerdefense" />
-        <item itemvalue="Python.Objgame" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.Objgame" />
         <item itemvalue="Python.listtest" />
         <item itemvalue="Python.t" />
       </list>
@@ -394,7 +402,21 @@
       <option name="project" value="LOCAL" />
       <updated>1589201920355</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="readme">
+      <created>1589202075924</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1589202075924</updated>
+    </task>
+    <task id="LOCAL-00027" summary="cleaned up files">
+      <created>1589202199634</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1589202199634</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -411,7 +433,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="man kan rykke rundt på 7 turrets med space" />
     <MESSAGE value="Begyndt på objektorienteret omskrivning" />
     <MESSAGE value="Væge" />
     <MESSAGE value="Vægge" />
@@ -436,7 +457,8 @@
     <MESSAGE value="comments" />
     <MESSAGE value="balancing" />
     <MESSAGE value="readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme" />
+    <MESSAGE value="cleaned up files" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned up files" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
@@ -471,22 +493,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588979882412" />
-    <state width="1515" height="269" key="GridCell.Tab.0.bottom" timestamp="1589201601965">
+    <state width="1515" height="269" key="GridCell.Tab.0.bottom" timestamp="1589206655976">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="269" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589201601965" />
-    <state width="1515" height="269" key="GridCell.Tab.0.center" timestamp="1589201601964">
+    <state width="1515" height="269" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589206655976" />
+    <state width="1515" height="269" key="GridCell.Tab.0.center" timestamp="1589206655976">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="269" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589201601964" />
-    <state width="1515" height="269" key="GridCell.Tab.0.left" timestamp="1589201601964">
+    <state width="1515" height="269" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589206655976" />
+    <state width="1515" height="269" key="GridCell.Tab.0.left" timestamp="1589206655976">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="269" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589201601964" />
-    <state width="1515" height="269" key="GridCell.Tab.0.right" timestamp="1589201601964">
+    <state width="1515" height="269" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589206655976" />
+    <state width="1515" height="269" key="GridCell.Tab.0.right" timestamp="1589206655976">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="269" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589201601964" />
+    <state width="1515" height="269" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589206655976" />
     <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1589077490727">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -511,10 +533,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-39" y="40" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589149707820" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1589201750878">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1589202208055">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1589201750878" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1589202208055" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589189616212">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

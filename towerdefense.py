@@ -12,7 +12,7 @@ screen_width = 1536
 screen_height = 864
 
 # change to True for fullscreeen or False for window
-fullscreen = True
+fullscreen = False
 
 # this will help place sprites in a smaller grid rather than calculating each pixel position
 # scale works best for 16:9 resolutions (grid is 32:18)
@@ -50,33 +50,13 @@ def scalesprite(sprite):
                                            sprite.image.get_size()[1] * sprite_scale))
 
 
-# this class is for all my hay walls
-class Wall(pygame.sprite.Sprite):
-    # runs when wall is created
-    def __init__(self, sprite, pos):
-        super(Wall, self).__init__()
+# remove redundancies in sprite objects
+class Sprt(pygame.sprite.Sprite):
+    def __init__(self, sprite, x, y):
+        super(Sprt, self).__init__()
 
         # load sprite, scale it and size object rect to image size
         self.image = pygame.image.load(sprite).convert_alpha()
-        scalesprite(self)
-        self.rect = self.image.get_rect()
-
-        # move to given position
-        self.rect.x = pos[0]
-        self.rect.y = pos[1]
-
-        # change hitbox for 3d effect
-        self.rect.inflate_ip(0, -sc)
-
-
-# this class is for the dog you need to protect
-class Dog(pygame.sprite.Sprite):
-    # runs when dog is created
-    def __init__(self, x, y):
-        super(Dog, self).__init__()
-
-        # load sprite, scale it and size object rect to image size
-        self.image = pygame.image.load('dog1.png').convert_alpha()
         scalesprite(self)
         self.rect = self.image.get_rect()
 
@@ -84,7 +64,18 @@ class Dog(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-        # declare local variables
+
+# this class is for all my hay walls
+class Wall(Sprt):
+    def __init__(self, sprite, x, y):
+        super().__init__(sprite, x, y)
+        self.rect.inflate_ip(0, -sc)
+
+
+# this class is for the dog you need to protect
+class Dog(Sprt):
+    def __init__(self, sprite, x, y):
+        super().__init__(sprite, x, y)
         self.health = dogHP
         self.dead = False
 
@@ -111,19 +102,11 @@ class Dog(pygame.sprite.Sprite):
 
 
 # this class is for the player character
-class Player(pygame.sprite.Sprite):
+class Player(Sprt):
     # runs when player is created
-    def __init__(self, x, y):
-        super(Player, self).__init__()
+    def __init__(self, sprite, x, y):
+        super().__init__(sprite, x, y)
 
-        # load sprite, scale it and size object rect to image size
-        self.image = pygame.image.load('dad1.png').convert_alpha()
-        scalesprite(self)
-        self.rect = self.image.get_rect()
-
-        # go to given coordinates
-        self.rect.y = y
-        self.rect.x = x
         # set theoretical x and y values that can be float
         self.x = x
         self.y = y
@@ -152,7 +135,7 @@ class Player(pygame.sprite.Sprite):
         if self.turretcount > 0 and not removed:
             self.building = True
             # make progress bar on top of player
-            self.buildbar = Buildbar('build1.png', self.rect.x, self.rect.y - (5 * sprite_scale))
+            self.buildbar = Sprt('build1.png', self.rect.x, self.rect.y - (5 * sprite_scale))
             theApp.ui_sprites.append(self.buildbar)
             # track start time
             self.start_time = pygame.time.get_ticks()
@@ -223,7 +206,7 @@ class Player(pygame.sprite.Sprite):
 
         # if the time is up, spawn the turret next to you and stop building
         if now - self.start_time >= build_cooldown:
-            new_turret = Turret((int(self.rect.x) + 5), (int(self.rect.y) + 10))
+            new_turret = Turret('turret1.png', (int(self.rect.x) + 5), (int(self.rect.y) + 10))
             theApp.turrets.add(new_turret)
             theApp.all_sprites.append(new_turret)
             self.turretcount -= 1
@@ -234,40 +217,14 @@ class Player(pygame.sprite.Sprite):
         # move if you are not building
         if self.building:
             self.build()
-
         else:
             self.move()
 
 
-# this class is for progress bar ui
-class Buildbar(pygame.sprite.Sprite):
-    # object for build progress bar
-    def __init__(self, image, x, y):
-        super(Buildbar, self).__init__()
-
-        # load sprite, scale it and size object rect to image size
-        self.image = pygame.image.load(image).convert_alpha()
-        scalesprite(self)
-        self.rect = self.image.get_rect()
-
-        # go to given coordinates
-        self.rect.x = x
-        self.rect.y = y
-
-
 # this class is for turret towers (they shoot at enemies)
-class Turret(pygame.sprite.Sprite):
-    def __init__(self, x, y):
-        super(Turret, self).__init__()
-
-        # load sprite, scale it and size object rect to image size
-        self.image = pygame.image.load('turret1.png').convert_alpha()
-        scalesprite(self)
-        self.rect = self.image.get_rect()
-
-        # go to given coordinates
-        self.rect.x = x
-        self.rect.y = y
+class Turret(Sprt):
+    def __init__(self, sprite, x, y):
+        super().__init__(sprite, x, y)
 
         # declare local variables
         self.range = turret_range
@@ -302,7 +259,7 @@ class Turret(pygame.sprite.Sprite):
                             break
                     if not self.blind:
                         self.oldtime = time.time()
-                        new_bullet = Bullet(self.rect.x, (self.rect.y + 10), t)
+                        new_bullet = Bullet('bullet.png', self.rect.x, (self.rect.y + 10), t)
                         theApp.bullets.add(new_bullet)
                         theApp.all_sprites.append(new_bullet)
                         self.oldtime = now
@@ -310,18 +267,9 @@ class Turret(pygame.sprite.Sprite):
 
 
 # this class is for bullets shot by turrets
-class Bullet(pygame.sprite.Sprite):
-    def __init__(self, x, y, target):
-        super(Bullet, self).__init__()
-
-        # load sprite, scale it and size object rect to image size
-        self.image = pygame.image.load('bullet.png').convert_alpha()
-        scalesprite(self)
-        self.rect = self.image.get_rect()
-
-        # go to given coordinates
-        self.rect.x = x
-        self.rect.y = y
+class Bullet(Sprt):
+    def __init__(self, sprite, x, y, target):
+        super().__init__(sprite, x, y)
 
         # declare local variables
         self.speed = bullet_speed
@@ -364,15 +312,10 @@ class Bullet(pygame.sprite.Sprite):
 
 
 # class for the enemies
-class Enemy(pygame.sprite.Sprite):
+class Enemy(Sprt):
     # runs when enemy is created
-    def __init__(self):
-        super(Enemy, self).__init__()
-
-        # load sprite, scale it and size object rect to image size
-        self.image = pygame.image.load('sombi1.png').convert_alpha()
-        scalesprite(self)
-        self.rect = self.image.get_rect()
+    def __init__(self, sprite, x, y):
+        super().__init__(sprite, x, y)
 
         # declare local variables
         self.speed = som_speed
@@ -531,27 +474,10 @@ class Enemy(pygame.sprite.Sprite):
 
             # die at sub 0 health
             else:
-                theApp.gore = Gore(self.rect.x, self.rect.y)
+                theApp.gore = Sprt('blood.png', self.rect.x, self.rect.y)
+                theApp.floor_sprites.append(theApp.gore)
                 theApp.all_sprites.remove(self)
                 self.kill()
-
-
-# this calss is for blood splatter where enemies die
-class Gore(pygame.sprite.Sprite):
-    def __init__(self, x, y):
-        super(Gore, self).__init__()
-
-        # load sprite, scale it and size object rect to image size
-        self.image = pygame.image.load('blood.png').convert_alpha()
-        scalesprite(self)
-        self.rect = self.image.get_rect()
-
-        # go to given coordinates
-        self.rect.x = x
-        self.rect.y = y
-
-        # gets blitted before (below) creatures
-        theApp.floor_sprites.append(self)
 
 
 # class for my entire game
@@ -591,17 +517,17 @@ class App:
             if i == 11 or i == 9:
                 # short walls get moved slightly down
                 # this doesn't scale well but is works for 3 pixels in the res i'm using
-                self.wall = Wall(s, ((c[0] * sc), (c[1] * sc) + sprite_scale))
+                self.wall = Wall(s, (c[0] * sc), ((c[1] * sc) + sprite_scale))
             else:
                 # create walls for sprite and corresponding scaled corrdinate
-                self.wall = Wall(s, (c[0] * sc, c[1] * sc))
+                self.wall = Wall(s, (c[0] * sc), (c[1] * sc))
             # add to list of wall, used for collisions
             self.wall_list.append(self.wall)
             i += 1
 
         # create player and dog objects
-        self.player = Player(plr_x, plr_y)
-        self.dog = Dog(dog_x, dog_y)
+        self.player = Player("dad1.png", plr_x, plr_y)
+        self.dog = Dog("dog1.png", dog_x, dog_y)
 
         # add player, dog and walls to render list
         self.all_sprites.extend(self.wall_list)
@@ -660,7 +586,7 @@ class App:
         # 1 % chance of spawning an enemy
         # i want to make the chance to up with time later
         if random.randrange(1, 101) == 1:
-            new_enemy = Enemy()
+            new_enemy = Enemy("sombi1.png", -2, -2)
             self.enemies.add(new_enemy)
             self.all_sprites.append(new_enemy)
 
