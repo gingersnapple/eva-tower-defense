@@ -12,7 +12,7 @@ screen_width = 1536
 screen_height = 864
 
 # change to True for fullscreeen or False for window
-fullscreen = False
+fullscreen = True
 
 # this will help place sprites in a smaller grid rather than calculating each pixel position
 # scale works best for 16:9 resolutions (grid is 32:18)
@@ -26,8 +26,9 @@ enemy_cooldown = 900
 build_cooldown = 900
 turret_cooldown = 0.5
 turret_range = round(sc * 4)
+turret_limit = 6
 dogHP = 24
-enemyHP = 6
+enemyHP = 8
 
 # misc. constants
 sprite_scale = round(sc / 16)
@@ -133,7 +134,7 @@ class Player(pygame.sprite.Sprite):
         # declare other stuff
         self.walls = None
         self.building = False
-        self.turretcount = 7
+        self.turretcount = turret_limit
 
     # runs when player presses [space]
     def startbuild(self):
@@ -349,13 +350,16 @@ class Bullet(pygame.sprite.Sprite):
         for enemy in theApp.enemies:
             if enemy in theApp.all_sprites and self.rect.colliderect(enemy.rect):
                 enemy.damage(1)
-                theApp.all_sprites.remove(self)
+                # for some reason this come sometimes runs without the bullet already being on all_sprites
+                if self in theApp.all_sprites:
+                    theApp.all_sprites.remove(self)
                 self.kill()
 
         # if it hits a wall,and kill self
         for wall in theApp.wall_list:
             if self.rect.colliderect(wall.rect):
-                theApp.all_sprites.remove(self)
+                if self in theApp.all_sprites:
+                    theApp.all_sprites.remove(self)
                 self.kill()
 
 

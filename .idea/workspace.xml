@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="comments and better syntax">
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Objgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Objgame.py" afterDir="false" />
     </list>
@@ -374,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589156936967</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="comments">
+      <created>1589201245212</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1589201245212</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -413,7 +420,8 @@
     <MESSAGE value="enemy path has a deeper decision tree" />
     <MESSAGE value="grass background added." />
     <MESSAGE value="comments and better syntax" />
-    <option name="LAST_COMMIT_MESSAGE" value="comments and better syntax" />
+    <MESSAGE value="comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="comments" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
@@ -448,22 +456,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588979882412" />
-    <state width="1515" height="54" key="GridCell.Tab.0.bottom" timestamp="1589201037597">
+    <state width="1515" height="269" key="GridCell.Tab.0.bottom" timestamp="1589201601965">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="54" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589201037597" />
-    <state width="1515" height="54" key="GridCell.Tab.0.center" timestamp="1589201037597">
+    <state width="1515" height="269" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589201601965" />
+    <state width="1515" height="269" key="GridCell.Tab.0.center" timestamp="1589201601964">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="54" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589201037597" />
-    <state width="1515" height="54" key="GridCell.Tab.0.left" timestamp="1589201037596">
+    <state width="1515" height="269" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589201601964" />
+    <state width="1515" height="269" key="GridCell.Tab.0.left" timestamp="1589201601964">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="54" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589201037596" />
-    <state width="1515" height="54" key="GridCell.Tab.0.right" timestamp="1589201037597">
+    <state width="1515" height="269" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589201601964" />
+    <state width="1515" height="269" key="GridCell.Tab.0.right" timestamp="1589201601964">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="54" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589201037597" />
+    <state width="1515" height="269" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589201601964" />
     <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1589077490727">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
