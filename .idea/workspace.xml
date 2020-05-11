@@ -19,16 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="cleaned up files">
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    <list default="true" id="7b06c06f-9dcd-447d-9b56-ad0ce7f784b7" name="Default Changelist" comment="better class structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/point.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove4.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/towerdefense.py" beforeDir="false" afterPath="$PROJECT_DIR$/towerdefense.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wall-long.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589202199634</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="better class structure">
+      <created>1589206786947</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1589206786947</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -433,7 +433,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Begyndt på objektorienteret omskrivning" />
     <MESSAGE value="Væge" />
     <MESSAGE value="Vægge" />
     <MESSAGE value="Førsøger at flytte spiller og hitbox ind" />
@@ -458,7 +457,8 @@
     <MESSAGE value="balancing" />
     <MESSAGE value="readme" />
     <MESSAGE value="cleaned up files" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned up files" />
+    <MESSAGE value="better class structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="better class structure" />
   </component>
   <component name="WindowStateProjectService">
     <state x="484" y="8" key="#Objgame" timestamp="1588378044631">
@@ -493,22 +493,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="227" y="124" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588979882412" />
-    <state width="1515" height="269" key="GridCell.Tab.0.bottom" timestamp="1589206655976">
+    <state width="745" height="268" key="GridCell.Tab.0.bottom" timestamp="1589211808646">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="269" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589206655976" />
-    <state width="1515" height="269" key="GridCell.Tab.0.center" timestamp="1589206655976">
+    <state width="745" height="268" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589211808646" />
+    <state width="745" height="268" key="GridCell.Tab.0.center" timestamp="1589211808646">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="269" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589206655976" />
-    <state width="1515" height="269" key="GridCell.Tab.0.left" timestamp="1589206655976">
+    <state width="745" height="268" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589211808646" />
+    <state width="745" height="268" key="GridCell.Tab.0.left" timestamp="1589211808646">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="269" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589206655976" />
-    <state width="1515" height="269" key="GridCell.Tab.0.right" timestamp="1589206655976">
+    <state width="745" height="268" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589211808646" />
+    <state width="745" height="268" key="GridCell.Tab.0.right" timestamp="1589211808646">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="269" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589206655976" />
+    <state width="745" height="268" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589211808646" />
     <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1589077490727">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

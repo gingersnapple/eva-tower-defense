@@ -115,7 +115,6 @@ class Player(Sprt):
         self.change_y = 0
 
         # declare other stuff
-        self.walls = None
         self.building = False
         self.turretcount = turret_limit
 
@@ -249,7 +248,7 @@ class Turret(Sprt):
                 # continue if the enemy is close enough
                 if dist < self.range:
                     # draw line between turret and enemy
-                    line = pygame.draw.line(theApp._display_surf, (0, 0, 0), (self.rect.x, self.rect.y + round(sc / 2)),
+                    line = pygame.draw.line(theApp.display_surf, (0, 0, 0), (self.rect.x, self.rect.y + round(sc / 2)),
                                             (t.rect.x, t.rect.y + sc))
 
                     # shoot if a wall isn't in the way
@@ -485,7 +484,7 @@ class App:
     def __init__(self):
         # declare local variables, lists, sprite groups etc.
         self._running = True
-        self._display_surf = None
+        self.display_surf = None
         self.size = self.weight, self.height = screen_width, screen_height
 
         self.all_sprites = []
@@ -501,9 +500,9 @@ class App:
 
         # declare game surface
         if fullscreen:
-            self._display_surf = pygame.display.set_mode(self.size, FULLSCREEN | pygame.DOUBLEBUF)
+            self.display_surf = pygame.display.set_mode(self.size, FULLSCREEN | pygame.DOUBLEBUF)
         else:
-            self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
+            self.display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         self._running = True
 
         # describes wall sprites and placement
@@ -517,12 +516,12 @@ class App:
             if i == 11 or i == 9:
                 # short walls get moved slightly down
                 # this doesn't scale well but is works for 3 pixels in the res i'm using
-                self.wall = Wall(s, (c[0] * sc), ((c[1] * sc) + sprite_scale))
+                wall = Wall(s, (c[0] * sc), ((c[1] * sc) + sprite_scale))
             else:
                 # create walls for sprite and corresponding scaled corrdinate
-                self.wall = Wall(s, (c[0] * sc), (c[1] * sc))
+                wall = Wall(s, (c[0] * sc), (c[1] * sc))
             # add to list of wall, used for collisions
-            self.wall_list.append(self.wall)
+            self.wall_list.append(wall)
             i += 1
 
         # create player and dog objects
@@ -607,20 +606,20 @@ class App:
         # blit backdrop tiles
         for p in self.grid:
             # blit each sprite onto display
-            self._display_surf.blit(self.image, p)
+            self.display_surf.blit(self.image, p)
 
         # floor is blitted on top of backdrop but below other sprites
         for sprite in self.floor_sprites:
-            self._display_surf.blit(sprite.image, sprite.rect)
+            self.display_surf.blit(sprite.image, sprite.rect)
 
         # display lower sprites on top of higher sprites based on bottom left corner
         self.all_sprites.sort(key=lambda x: (x.rect.y + x.rect.height))
         for sprite in self.all_sprites:
-            self._display_surf.blit(sprite.image, sprite.rect)
+            self.display_surf.blit(sprite.image, sprite.rect)
 
         # user interface is blitted on top of anything else
         for sprite in self.ui_sprites:
-            self._display_surf.blit(sprite.image, sprite.rect)
+            self.display_surf.blit(sprite.image, sprite.rect)
 
         # update screen
         pygame.display.flip()
