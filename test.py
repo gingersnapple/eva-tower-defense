@@ -14,4 +14,4 @@ else:
     agenda.append([10.5, 4])
     agenda.append([10.5, 8])
     agenda.append([5, 6])
-print(agenda)
+print(str(agenda))
