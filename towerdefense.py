@@ -262,6 +262,7 @@ class Turret(Sprt):
                         theApp.bullets.add(new_bullet)
                         theApp.all_sprites.append(new_bullet)
                         self.oldtime = now
+                        break
                     self.blind = False
 
 
